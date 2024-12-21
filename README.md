@@ -38,7 +38,7 @@ A lightweight and efficient command-line application that combines the Pomodoro 
 1. Clone the repository:
    ```bash
    git clone https://github.com/lmilz/PomoTask.git
-   cd pomotask
+   cd PomoTask
    ```
 
 2. Build the project:
@@ -48,14 +48,14 @@ A lightweight and efficient command-line application that combines the Pomodoro 
 
 3. Run the application:
    ```bash
-   ./pomotask
+   ./PomoTask
    ```
 
 ### Usage
 
 #### Start a Pomodoro Session
 ```bash
-./pomotask --pomodoro <focustime> <effect>
+./PomoTask --pomodoro <focustime> <effect>
 ```
 
 ## License
