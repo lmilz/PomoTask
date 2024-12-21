@@ -31,13 +31,11 @@ class PomoTaskApp {
   std::vector<std::string> argument_list;
   std::atomic<bool> running_app;
 
-  std::string actualDate();
   std::pair<int, int> getTerminalSize();
   void printHelp();
   void initCommand(int argc, char* argv[]);
   void initEffect();
   void initPomodoroTimer();
-  void initMarkdown();
   void RunPomodoroTimer();
   void RunEffect();
   void addTodo(std::string& todo);

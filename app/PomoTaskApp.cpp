@@ -13,17 +13,6 @@ PomoTaskApp::PomoTaskApp(int argc, char* argv[]) : running_app(true) {
   for (int index = 2; index < argc; ++index) {
     argument_list.emplace_back(argv[index]);
   }
-
-  std::string filename = actualDate();
-
-  // Check if markdown already exists
-  // if (std::filesystem::exists(filename)) {
-  // Add todo list
-  // std::vector<std::string> todos = MarkdownParser::parseList(filename);
-  // for (auto iter = todos.begin(); iter != todos.end(); ++iter) {
-  //  todo_list->addItem(*iter);
-  //}
-  //}
 }
 
 PomoTaskApp::~PomoTaskApp() {
@@ -45,25 +34,10 @@ void PomoTaskApp::execute() {
 
     timerThread.join();
     effectThread.join();
-  } else if (command == "--add-task") {
-    // std::string todo = argv[2];
-    // addTodo(todo);
-  } else if (command == "show-tasks") {
-    todo_list->showList();
   } else {
     std::cout << "Unbekannter Befehl: " << command << "\n";
     std::cout << "Verwenden Sie --help für eine Liste der Befehle.\n";
   }
-}
-
-std::string PomoTaskApp::actualDate() {
-  std::time_t t = std::time(nullptr);
-  std::tm tm = *std::localtime(&t);
-
-  // Dateiname formatieren: Notes_Day_Month_Year.md
-  std::ostringstream filename;
-  filename << "Notes_" << std::put_time(&tm, "%d_%m_%Y") << ".md";
-  return filename.str();
 }
 
 std::pair<int, int> PomoTaskApp::getTerminalSize() {
@@ -77,10 +51,7 @@ void PomoTaskApp::printHelp() {
   std::map<std::string, std::string> commands = {
       {"--help                          ", "Zeigt diese Hilfeseite an."},
       {"--pomodoro <focus time> <effect>",
-       "Pomodoro Timer mit der Fokuszeit und den CLI Effekt."},
-      {"--add-task <todo_name>          ",
-       "Eine neue ToDo in die Liste hinzufügen."},
-      {"--show-task                     ", "Zeige ToDo-Liste."}};
+       "Pomodoro Timer mit der Fokuszeit und den CLI Effekt."}};
 
   std::cout << "Verfügbare Befehle:\n";
   for (const auto& [command, description] : commands) {
@@ -123,12 +94,4 @@ void PomoTaskApp::RunPomodoroTimer() {
     }
     std::this_thread::sleep_for(std::chrono::seconds(1));
   }
-}
-
-void PomoTaskApp::addTodo(std::string& todo) {
-  todo_list->addItem(todo);
-
-  //  if (markdown_file.is_open()) {
-  //    markdown_file << Markdown::list(todo_list->showList()) << "\n";
-  //  }
 }
