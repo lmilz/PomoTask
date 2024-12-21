@@ -31,9 +31,10 @@ void RainEffect::run() {
   }
 
   // Remove raindrops that have reached the bottom of the screen
-  raindrops.erase(std::remove_if(raindrops.begin(), raindrops.end(),
-                                 [this](const Raindrop& drop) { return drop.y >= rows; }),
-                  raindrops.end());
+  raindrops.erase(
+      std::remove_if(raindrops.begin(), raindrops.end(),
+                     [this](const Raindrop& drop) { return drop.y >= rows; }),
+      raindrops.end());
 
   // Draw water film
   for (int i = 0; i < cols; ++i) {

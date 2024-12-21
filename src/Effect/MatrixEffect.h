@@ -8,13 +8,13 @@
 #include "Effect.h"
 
 class MatrixEffect : public Effect {
-public:
-    MatrixEffect(int rows, int cols, int color = 32);
+ public:
+  MatrixEffect(int rows, int cols, int color = 32);
 
-    void run() override;
-private:
-    std::vector<char> columns;
+  void run() override;
 
+ private:
+  std::vector<char> columns;
 };
 
 #endif /* _MATRIXEFFECT_H */

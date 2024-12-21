@@ -5,7 +5,8 @@ ToDo::ToDo() {}
 void ToDo::addItem(const std::string& todo) { todo_list.push_back(todo); }
 
 void ToDo::removeItem(const std::size_t index) {
-  if (index >= todo_list.size()) return;
+  if (index >= todo_list.size())
+    return;
 
   todo_list.erase(todo_list.begin() + index);
 }

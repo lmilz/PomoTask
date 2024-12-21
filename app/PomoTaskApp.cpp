@@ -6,7 +6,8 @@ PomoTaskApp::PomoTaskApp(int argc, char* argv[]) : running_app(true) {
   pomodoro_timer = new Pomodoro(0, 0);
 
   // interprete command
-  if (argc > 1) command = argv[1];
+  if (argc > 1)
+    command = argv[1];
 
   // save arguments for command
   for (int index = 2; index < argc; ++index) {
@@ -75,8 +76,10 @@ void PomoTaskApp::printHelp() {
   // Liste der Befehle und Beschreibungen
   std::map<std::string, std::string> commands = {
       {"--help                          ", "Zeigt diese Hilfeseite an."},
-      {"--pomodoro <focus time> <effect>", "Pomodoro Timer mit der Fokuszeit und den CLI Effekt."},
-      {"--add-task <todo_name>          ", "Eine neue ToDo in die Liste hinzufügen."},
+      {"--pomodoro <focus time> <effect>",
+       "Pomodoro Timer mit der Fokuszeit und den CLI Effekt."},
+      {"--add-task <todo_name>          ",
+       "Eine neue ToDo in die Liste hinzufügen."},
       {"--show-task                     ", "Zeige ToDo-Liste."}};
 
   std::cout << "Verfügbare Befehle:\n";

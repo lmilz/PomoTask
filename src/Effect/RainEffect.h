@@ -2,26 +2,26 @@
 #define _RAINEFFECT_H
 
 // Includes
+#include <algorithm>
 #include <cstdlib>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include "Effect.h"
 
 class RainEffect : public Effect {
-public:
-    RainEffect(int rows, int cols, int color = 34);
+ public:
+  RainEffect(int rows, int cols, int color = 34);
 
-    void run() override;
-private:
-    struct Raindrop {
-        int x;
-        int y;
-    };
+  void run() override;
 
-    std::vector<Raindrop> raindrops; 
-    std::vector<char>     waterfilm; 
+ private:
+  struct Raindrop {
+    int x;
+    int y;
+  };
+
+  std::vector<Raindrop> raindrops;
+  std::vector<char> waterfilm;
 };
-
 
 #endif /* _SHELLFX_RAINEFFECT_H */

@@ -10,4 +10,6 @@ TEST_GROUP(PomodoroTests) {
   void teardown() { delete pom; }
 };
 
-TEST(PomodoroTests, ConstructorInitializesValues) { CHECK_EQUAL(pom->getFocusTime(), 600); }
+TEST(PomodoroTests, ConstructorInitializesValues) {
+  CHECK_EQUAL(pom->getFocusTime(), 600);
+}

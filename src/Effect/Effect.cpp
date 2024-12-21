@@ -5,7 +5,8 @@
 #include <iostream>
 
 // Constructs an `Effect` instance with specified dimensions and color.
-Effect::Effect(int rows, int cols, int color) : rows(rows), cols(cols), color(color) {
+Effect::Effect(int rows, int cols, int color)
+    : rows(rows), cols(cols), color(color) {
   srand(time(0));  // Initialize random number generator
   clearScreen();
 }
