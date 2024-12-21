@@ -1,15 +1,6 @@
 #ifndef _EFFECT_H
 #define _EFFECT_H
 
-// Includes
-
-/**
- * @brief Effect class for visual effects displayed in a terminal.
- * 
- * The `Effect` class provides common functionalities for terminal-based effects, 
- * such as cursor manipulation and screen clearing. Derived classes should implement 
- * the `run` method to define their specific behavior.
- */
 class Effect {
 public:
     Effect(int rows, int cols, int color);

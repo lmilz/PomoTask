@@ -1,8 +1,3 @@
-# Compiler und Flags
-CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++20 -I/usr/local/include/CppUTest -I$(APPDIR) $(foreach dir, $(shell find $(SRCDIR) -type d), -I$(dir))
-LDFLAGS = -L$(LIBDIR) -lPomoTask -lCppUTest -lCppUTestExt
-
 # Verzeichnisse
 SRCDIR = src
 OBJDIR = obj
@@ -10,6 +5,11 @@ LIBDIR = lib
 BINDIR = bin
 TESTDIR = tests
 APPDIR = app
+
+# Compiler und Flags
+CXX = g++
+CXXFLAGS = -Wall -Wextra -std=c++20 -I/usr/local/include/CppUTest -I$(APPDIR) $(foreach dir, $(shell find $(SRCDIR) -type d), -I$(dir))
+LDFLAGS = -L$(LIBDIR) -lPomoTask -lCppUTest -lCppUTestExt
 
 # Ziel-Bibliothek
 TARGET = $(LIBDIR)/libPomoTask.a

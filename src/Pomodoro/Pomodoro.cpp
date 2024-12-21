@@ -6,7 +6,6 @@ Pomodoro::Pomodoro(int focustime, int breaktime)
 
 // Function for start the pomodoro timer
 bool Pomodoro::start() {
-  // std::cout << "Pomodoro gestartet für " << focustime << " Minuten." << std::endl;
   std::cout << "\033[1;1H";  // Cursor nach oben links setzen
   std::cout << "\rVerbleibende Zeit: " << focustime / 60 << " Minuten " << focustime % 60
             << " Sekunden" << std::flush;
