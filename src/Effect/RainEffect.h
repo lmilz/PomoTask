@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "Effect.h"
 
 class RainEffect : public Effect {

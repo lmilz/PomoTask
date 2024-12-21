@@ -1,3 +1,8 @@
+# Ignoriere generierte Binärdateien oder Build-Verzeichnisse
+**/bin/
+**/lib/
+**/build/
+
 # Prerequisites
 *.d
 

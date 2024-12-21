@@ -16,8 +16,6 @@
 #include "MatrixEffect.h"
 #include "Pomodoro.h"
 #include "ToDo.h"
-#include "Markdown.h"
-#include "MarkdownParser.h"
 
 class PomoTaskApp {
 public:
