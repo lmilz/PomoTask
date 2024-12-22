@@ -9,7 +9,7 @@ APPDIR = app
 # Compiler und Flags
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++20 -I/usr/local/include/CppUTest -I$(APPDIR) $(foreach dir, $(shell find $(SRCDIR) -type d), -I$(dir))
-LDFLAGS = -L$(LIBDIR) -lPomoTask -lCppUTest -lCppUTestExt
+LDFLAGS = -L$(LIBDIR) -lsqlite3 -lPomoTask -lCppUTest -lCppUTestExt
 
 # Ziel-Bibliothek
 TARGET = $(LIBDIR)/libPomoTask.a
