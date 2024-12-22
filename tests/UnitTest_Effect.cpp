@@ -26,22 +26,22 @@ TEST_GROUP(EffectTests) {
 };
 
 TEST(EffectTests, ConstructorInitializesValues) {
-  CHECK(10 == effect->getRows());
-  CHECK(20 == effect->getCols());
-  CHECK(30 == effect->getColor());
+  CHECK_EQUAL(10, effect->getRows());
+  CHECK_EQUAL(20, effect->getCols());
+  CHECK_EQUAL(30, effect->getColor());
 }
 
 TEST(EffectTests, Setter_Getter_Rows) {
   effect->setRows(40);
-  CHECK(40 == effect->getRows());
+  CHECK_EQUAL(40, effect->getRows());
 }
 
 TEST(EffectTests, Setter_Getter_Cols) {
   effect->setCols(50);
-  CHECK(50 == effect->getCols());
+  CHECK_EQUAL(50, effect->getCols());
 }
 
 TEST(EffectTests, Setter_Getter_Color) {
   effect->setColor(60);
-  CHECK(60 == effect->getColor());
+  CHECK_EQUAL(60, effect->getColor());
 }
