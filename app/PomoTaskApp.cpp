@@ -50,8 +50,7 @@ void PomoTaskApp::printHelp() {
   // Liste der Befehle und Beschreibungen
   std::map<std::string, std::string> commands = {
       {"--help                          ", "Zeigt diese Hilfeseite an."},
-      {"--pomodoro <focus time> <effect>",
-       "Pomodoro Timer mit der Fokuszeit und den CLI Effekt."}};
+      {"--pomodoro <focus time> <effect>", "Pomodoro Timer mit der Fokuszeit und den CLI Effekt."}};
 
   std::cout << "Verfügbare Befehle:\n";
   for (const auto& [command, description] : commands) {
