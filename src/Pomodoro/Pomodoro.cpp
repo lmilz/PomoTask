@@ -4,7 +4,7 @@ Pomodoro::Pomodoro(int focustime, int breaktime)
     : focustime(focustime * 60), breaktime(breaktime) {}
 
 bool Pomodoro::start() {
-  std::cout << "\033[1;1H";  // Cursor nach oben links setzen
+  std::cout << "\033[1;1H";
   std::cout << "\rVerbleibende Zeit: " << focustime / 60 << " Minuten "
             << focustime % 60 << " Sekunden" << std::flush;
   --focustime;
