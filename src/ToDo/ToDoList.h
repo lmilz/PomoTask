@@ -1,14 +1,14 @@
-#ifndef _TODO_H
-#define _TODO_H
+#ifndef _TODO_LIST_H
+#define _TODO_LIST_H
 
 // Includes
 #include <algorithm>
 #include <string>
 #include <vector>
 
-class ToDo {
+class ToDoList {
  public:
-  ToDo();
+  ToDoList();
 
   void addItem(const std::string& todo);
   void removeItem(const std::size_t index);
@@ -19,4 +19,4 @@ class ToDo {
   std::vector<std::string> todo_list;
 };
 
-#endif /* _TODO_H */
+#endif /* _TODO_LIST_H */
