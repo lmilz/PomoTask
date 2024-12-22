@@ -24,4 +24,4 @@ class RainEffect : public Effect {
   std::vector<char> waterfilm;
 };
 
-#endif /* _SHELLFX_RAINEFFECT_H */
+#endif /* _AINEFFECT_H */

@@ -1,14 +1,11 @@
 #include "RainEffect.h"
 
-// Constructs an `RainEffect` instance with specified dimensions and color.
 RainEffect::RainEffect(int rows, int cols, int color)
     : Effect(rows, cols, color), waterfilm(cols, ' ') {}
 
-// Runs the rain effect.
 void RainEffect::run() {
   setTextColor();
 
-  // Randomly add new raindrops at the top of the screen
   if (rand() % 10 < 3) {
     raindrops.push_back({rand() % cols, 0});  // New raindrop at random column
   }
@@ -16,8 +13,8 @@ void RainEffect::run() {
   // Move existing raindrops down and erase their previous positions
   for (auto& drop : raindrops) {
     setCursorPosition(drop.y, drop.x);
-    std::cout << " ";  // Clear previous position
-    drop.y++;          // Move raindrop down
+    std::cout << " "; 
+    drop.y++;      
   }
 
   // Redraw raindrops in their new positions
