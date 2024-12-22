@@ -61,3 +61,14 @@ A lightweight and efficient command-line application that combines the Pomodoro 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Third-Party Libraries
+
+This software uses the following third-party libraries:
+
+- **CppUTest**  
+  License: Modified BSD License (3-Clause BSD)  
+  Copyright: 2007-2023, CppUTest developers  
+  More information: [https://cpputest.github.io](https://cpputest.github.io)
+
+The full license text for CppUTest can be found in the [LICENSE](https://github.com/cpputest/cpputest?tab=BSD-3-Clause-1-ov-file#readme) file.
