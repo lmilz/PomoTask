@@ -1,13 +1,13 @@
 ---
 BasedOnStyle: Google
-IndentWidth: 2             # Standard-Einrückung für Google-Style
-TabWidth: 2                # Tabulatorbreite
-UseTab: Never              # Tabs vermeiden, nur Leerzeichen verwenden
-BreakBeforeBraces: Attach  # Klammern bleiben in der gleichen Zeile
-AllowShortIfStatementsOnASingleLine: false # "if" immer aufteilen
-ColumnLimit: 80            # Max. Breite einer Zeile
+IndentWidth: 2
+TabWidth: 2
+UseTab: Never  
+BreakBeforeBraces: Attach 
+AllowShortIfStatementsOnASingleLine: false
+ColumnLimit: 100            
 DerivePointerAlignment: false
-PointerAlignment: Left     # Sternchen (*) für Zeiger linksbündig
-SortIncludes: true         # Includes alphabetisch sortieren
-NamespaceIndentation: None # Keine zusätzliche Einrückung in Namespaces
-IncludeBlocks: Preserve    # Original-Include-Blöcke beibehalten
+PointerAlignment: Left
+SortIncludes: true 
+NamespaceIndentation: None 
+IncludeBlocks: Preserve
