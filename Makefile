@@ -1,7 +1,6 @@
 # Verzeichnisse
 SRCDIR = src
 OBJDIR = obj
-LIBDIR = lib
 BINDIR = bin
 TESTDIR = tests
 APPDIR = app
@@ -9,15 +8,10 @@ APPDIR = app
 # Compiler und Flags
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++20 -I/usr/include -I/usr/local/include/CppUTest -I$(APPDIR) $(foreach dir, $(shell find $(SRCDIR) -type d), -I$(dir))
-LDFLAGS = -L/usr/lib/x86_64-linux-gnu -L$(LIBDIR) -lsqlite3 -lPomoTask -lCppUTest -lCppUTestExt
+LDFLAGS = -L/usr/lib/x86_64-linux-gnu -lsqlite3 -lCppUTest -lCppUTestExt
 
-# Ziel-Bibliothek
-TARGET = $(LIBDIR)/libPomoTask.a
-
-# Testausführbare Datei
+# Ziele
 TEST_TARGET = $(BINDIR)/run_tests
-
-# CLI-Anwendung
 APP_TARGET = $(BINDIR)/PomoTask
 
 # Finde alle .cpp-Dateien
@@ -33,11 +27,7 @@ ALL_TESTS_OBJ = $(OBJDIR)/AllTests.o
 APP_OBJECTS = $(patsubst $(APPDIR)/%.cpp, $(OBJDIR)/App_%.o, $(APP_SOURCES))
 
 # Standardziel
-all: $(TARGET)
-
-# Erstelle die statische Bibliothek aus den .o-Dateien
-$(TARGET): $(OBJECTS) | $(LIBDIR)
-	ar rcs $(TARGET) $(OBJECTS)
+all: app test
 
 # Kompiliere .cpp-Dateien aus dem src-Verzeichnis zu .o-Dateien
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
@@ -57,26 +47,23 @@ $(OBJDIR)/App_%.o: $(APPDIR)/%.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Linke Testausführbare Datei
-$(TEST_TARGET): $(TEST_OBJECTS) $(ALL_TESTS_OBJ) $(TARGET) | $(BINDIR)
-	$(CXX) $(TEST_OBJECTS) $(ALL_TESTS_OBJ) $(TARGET) $(LDFLAGS) -o $@
+$(TEST_TARGET): $(TEST_OBJECTS) $(ALL_TESTS_OBJ) $(OBJECTS) | $(BINDIR)
+	$(CXX) $(TEST_OBJECTS) $(ALL_TESTS_OBJ) $(OBJECTS) $(LDFLAGS) -o $@
 
 # Linke CLI-Anwendung
-$(APP_TARGET): $(APP_OBJECTS) $(TARGET) | $(BINDIR)
-	$(CXX) $(APP_OBJECTS) $(TARGET) $(LDFLAGS) -o $@
+$(APP_TARGET): $(APP_OBJECTS) $(OBJECTS) | $(BINDIR)
+	$(CXX) $(APP_OBJECTS) $(OBJECTS) $(LDFLAGS) -o $@
 
 # Verzeichnisse erstellen
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
-
-$(LIBDIR):
-	mkdir -p $(LIBDIR)
 
 $(BINDIR):
 	mkdir -p $(BINDIR)
 
 # Clean-Ziel
 clean:
-	rm -rf $(OBJDIR) $(LIBDIR) $(BINDIR)
+	rm -rf $(OBJDIR) $(BINDIR)
 
 # Tests ausführen
 test: $(TEST_TARGET)
