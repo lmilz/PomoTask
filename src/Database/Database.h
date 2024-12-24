@@ -4,17 +4,17 @@
 // Includes
 #include <string>
 #include <sqlite3.h>
+#include <stdexcept>
+
 
 class Database {
 public:
     Database(const std::string& database_filename);
     virtual ~Database();
 
-    void createTable(const std::string& table_name, const std::string& schema);
-
+    sqlite3* getConnection();
 private:
     sqlite3* database; 
-    std::string database_name;
 };
 
 #endif /* _DATABASE_H */

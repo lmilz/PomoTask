@@ -1,9 +1,15 @@
 #include "Database.h"
 
-Database::Database(const std::string& database_filename) : database_name(database_filename), database(nullptr) {}
-
-Database::~Database() {
+Database::Database(const std::string& database_filename) {
+    if (sqlite3_open(database_filename.c_str(), &database) != SQLITE_OK) {
+        throw std::runtime_error("Failed to open database: " + database_filename);
+    }
 }
 
-void Database::createTable(const std::string& table_name, const std::string& schema) {
+Database::~Database() {
+    sqlite3_close(database);
+}
+
+sqlite3* Database::getConnection() {
+    return database;
 }
