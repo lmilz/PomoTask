@@ -11,13 +11,12 @@ class ToDoList {
  public:
   ToDoList();
 
-  void addItem(const std::string& todo);
-  void removeItem(const std::size_t index);
-  void removeItem(const std::string& todo);
-  std::vector<std::string> showList() const;
+  void addItem(const ToDo& todo);
+  void removeItem(const ToDo& todo);
+  std::vector<ToDo> showList() const;
 
  private:
-  std::vector<std::string> todo_list;
+  std::vector<ToDo> todo_list;
 };
 
 #endif /* _TODO_LIST_H */

@@ -2,18 +2,19 @@
 
 ToDoList::ToDoList() {}
 
-void ToDoList::addItem(const std::string& todo) { todo_list.push_back(todo); }
+void ToDoList::addItem(const ToDo& todo) { todo_list.push_back(todo); }
 
-void ToDoList::removeItem(const std::size_t index) {
-  if (index >= todo_list.size())
-    return;
+void ToDoList::removeItem(const ToDo& todo) {
+    auto iter = std::find_if(todo_list.begin(), todo_list.end(), [&todo](const ToDo& e) {
+        return e.name == todo.name &&
+               e.description == todo.description &&
+               e.status == todo.status &&
+               e.due_date == todo.due_date;
+    });
 
-  todo_list.erase(todo_list.begin() + index);
+    if (iter != todo_list.end()) {
+        todo_list.erase(iter);
+    }
 }
 
-void ToDoList::removeItem(const std::string& todo) {
-  auto iter = std::find(todo_list.begin(), todo_list.end(), todo);
-  todo_list.erase(iter);
-}
-
-std::vector<std::string> ToDoList::showList() const { return todo_list; }
+std::vector<ToDo> ToDoList::showList() const { return todo_list; }
