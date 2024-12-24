@@ -7,14 +7,15 @@ APP_DIR = $(SRC_DIR)/app
 TODO_DIR = $(SRC_DIR)/ToDo
 POMODORO_DIR = $(SRC_DIR)/Pomodoro
 
-# Alle Quell-Dateien
-APP_SOURCES = $(wildcard $(APP_DIR)/*/*.cpp) $(wildcard $(APP_DIR)/*/*.h)
-TODO_SOURCES = $(wildcard $(TODO_DIR)/*/*.cpp) $(wildcard $(TODO_DIR)/*/*.h)
-POMODORO_SOURCES = $(wildcard $(POMODORO_DIR)/*/*.cpp) $(wildcard $(POMODORO_DIR)/*/*.h)
+APP_SOURCES = $(wildcard $(APP_DIR)/src/*.cpp) $(wildcard $(APP_DIR)/include/*.h)
+TODO_SOURCES = $(wildcard $(TODO_DIR)/src/*.cpp) $(wildcard $(TODO_DIR)/include/*.h)
+POMODORO_SOURCES = $(wildcard $(POMODORO_DIR)/src/*.cpp) $(wildcard $(POMODORO_DIR)/include/*.h)
 
 # clang-tidy
-tidy: $(APP_SOURCES) $(TODO_SOURCES) $(POMODORO_SOURCES_SOURCES)
-	$(CLANG_TIDY) -p=. -checks=$(TIDY_CHECKS) $^
+tidy: $(APP_SOURCES) $(TODO_SOURCES) $(POMODORO_SOURCES)
+	@for file in $(APP_SOURCES) $(TODO_SOURCES) $(POMODORO_SOURCES); do \
+		$(CLANG_TIDY) $$file --; \
+	done
 
 # clang-format
 format:
