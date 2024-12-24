@@ -1,7 +1,7 @@
 // MIT License
 //
 // Copyright (c) 2024 Lars Milz
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -22,16 +22,20 @@
 
 #include "ToDoList.h"
 
-ToDoList::ToDoList() {}
+ToDoList::ToDoList()
+{
+}
 
-void ToDoList::addItem(const ToDo& todo) { todo_list.push_back(todo); }
+void ToDoList::addItem(const ToDo& todo)
+{
+    todo_list.push_back(todo);
+}
 
-void ToDoList::removeItem(const ToDo& todo) {
+void ToDoList::removeItem(const ToDo& todo)
+{
     auto iter = std::find_if(todo_list.begin(), todo_list.end(), [&todo](const ToDo& e) {
-        return e.name == todo.name &&
-               e.description == todo.description &&
-               e.status == todo.status &&
-               e.due_date == todo.due_date;
+        return e.name == todo.name && e.description == todo.description && e.status == todo.status
+               && e.due_date == todo.due_date;
     });
 
     if (iter != todo_list.end()) {
@@ -39,4 +43,7 @@ void ToDoList::removeItem(const ToDo& todo) {
     }
 }
 
-std::vector<ToDo> ToDoList::showList() const { return todo_list; }
+std::vector<ToDo> ToDoList::showList() const
+{
+    return todo_list;
+}

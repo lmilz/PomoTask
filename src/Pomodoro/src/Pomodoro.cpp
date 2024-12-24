@@ -1,7 +1,7 @@
 // MIT License
 //
 // Copyright (c) 2024 Lars Milz
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -22,26 +22,31 @@
 
 #include "Pomodoro.h"
 
-Pomodoro::Pomodoro(int focustime, int breaktime)
-    : focustime(focustime * 60), breaktime(breaktime) {}
-
-bool Pomodoro::start() {
-  std::cout << "\033[1;1H";
-  std::cout << "\rVerbleibende Zeit: " << focustime / 60 << " Minuten "
-            << focustime % 60 << " Sekunden" << std::flush;
-  --focustime;
-
-  if (focustime == 0) {
-    std::cout << std::endl
-              << "Pomodoro beendet! Zeit für eine Pause!" << std::endl;
-    return false;
-  }
-
-  return true;
+Pomodoro::Pomodoro(int focustime, int breaktime) : focustime(focustime * 60), breaktime(breaktime)
+{
 }
 
-void Pomodoro::setFocusTime(const int new_focustime) {
-  focustime = new_focustime * 60;
+bool Pomodoro::start()
+{
+    std::cout << "\033[1;1H";
+    std::cout << "\rVerbleibende Zeit: " << focustime / 60 << " Minuten " << focustime % 60
+              << " Sekunden" << std::flush;
+    --focustime;
+
+    if (focustime == 0) {
+        std::cout << std::endl << "Pomodoro beendet! Zeit für eine Pause!" << std::endl;
+        return false;
+    }
+
+    return true;
 }
 
-int Pomodoro::getFocusTime() const { return focustime; }
+void Pomodoro::setFocusTime(const int new_focustime)
+{
+    focustime = new_focustime * 60;
+}
+
+int Pomodoro::getFocusTime() const
+{
+    return focustime;
+}

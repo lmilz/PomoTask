@@ -1,7 +1,7 @@
 // MIT License
 //
 // Copyright (c) 2024 Lars Milz
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -22,16 +22,19 @@
 
 #include "Database.h"
 
-Database::Database(const std::string& database_filename) {
+Database::Database(const std::string& database_filename)
+{
     if (sqlite3_open(database_filename.c_str(), &database) != SQLITE_OK) {
         throw std::runtime_error("Failed to open database: " + database_filename);
     }
 }
 
-Database::~Database() {
+Database::~Database()
+{
     sqlite3_close(database);
 }
 
-sqlite3* Database::getConnection() {
+sqlite3* Database::getConnection()
+{
     return database;
 }

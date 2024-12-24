@@ -1,7 +1,7 @@
 // MIT License
 //
 // Copyright (c) 2024 Lars Milz
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -23,45 +23,49 @@
 #include "RainEffect.h"
 
 RainEffect::RainEffect(int rows, int cols, int color)
-    : Effect(rows, cols, color), waterfilm(cols, ' ') {}
+    : Effect(rows, cols, color), waterfilm(cols, ' ')
+{
+}
 
-void RainEffect::run() {
-  setTextColor();
+void RainEffect::run()
+{
+    setTextColor();
 
-  if (rand() % 10 < 3) {
-    raindrops.push_back({rand() % cols, 0});  // New raindrop at random column
-  }
-
-  // Move existing raindrops down and erase their previous positions
-  for (auto& drop : raindrops) {
-    setCursorPosition(drop.y, drop.x);
-    std::cout << " "; 
-    drop.y++;      
-  }
-
-  // Redraw raindrops in their new positions
-  for (const auto& drop : raindrops) {
-    if (drop.y < rows) {
-      setCursorPosition(drop.y, drop.x);
-      std::cout << "|";
-    } else {
-      waterfilm[drop.x] = '.';
+    if (rand() % 10 < 3) {
+        raindrops.push_back({rand() % cols, 0});  // New raindrop at random column
     }
-  }
 
-  // Remove raindrops that have reached the bottom of the screen
-  raindrops.erase(
-      std::remove_if(raindrops.begin(), raindrops.end(),
-                     [this](const Raindrop& drop) { return drop.y >= rows; }),
-      raindrops.end());
-
-  // Draw water film
-  for (int i = 0; i < cols; ++i) {
-    if (waterfilm[i] != ' ') {
-      setCursorPosition(rows, i + 1);
-      std::cout << waterfilm[i];
+    // Move existing raindrops down and erase their previous positions
+    for (auto& drop : raindrops) {
+        setCursorPosition(drop.y, drop.x);
+        std::cout << " ";
+        drop.y++;
     }
-  }
 
-  std::cout.flush();
+    // Redraw raindrops in their new positions
+    for (const auto& drop : raindrops) {
+        if (drop.y < rows) {
+            setCursorPosition(drop.y, drop.x);
+            std::cout << "|";
+        }
+        else {
+            waterfilm[drop.x] = '.';
+        }
+    }
+
+    // Remove raindrops that have reached the bottom of the screen
+    raindrops.erase(std::remove_if(raindrops.begin(),
+                                   raindrops.end(),
+                                   [this](const Raindrop& drop) { return drop.y >= rows; }),
+                    raindrops.end());
+
+    // Draw water film
+    for (int i = 0; i < cols; ++i) {
+        if (waterfilm[i] != ' ') {
+            setCursorPosition(rows, i + 1);
+            std::cout << waterfilm[i];
+        }
+    }
+
+    std::cout.flush();
 }

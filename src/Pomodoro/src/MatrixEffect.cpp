@@ -1,7 +1,7 @@
 // MIT License
 //
 // Copyright (c) 2024 Lars Milz
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -23,21 +23,25 @@
 #include "MatrixEffect.h"
 
 MatrixEffect::MatrixEffect(int rows, int cols, int color)
-    : Effect(rows, cols, color), columns(cols, ' ') {}
+    : Effect(rows, cols, color), columns(cols, ' ')
+{
+}
 
-void MatrixEffect::run() {
-  setTextColor();
-  int i = 0;
-  for (auto iter = columns.begin(); iter != columns.end(); ++iter, ++i) {
-    if (rand() % 10 < 2) {
-      // Generate a random printable ASCII character
-      *iter = rand() % 94 + 33;
-    } else {
-      *iter = ' ';
+void MatrixEffect::run()
+{
+    setTextColor();
+    int i = 0;
+    for (auto iter = columns.begin(); iter != columns.end(); ++iter, ++i) {
+        if (rand() % 10 < 2) {
+            // Generate a random printable ASCII character
+            *iter = rand() % 94 + 33;
+        }
+        else {
+            *iter = ' ';
+        }
+        // Move cursor to a random position in the current column
+        setCursorPosition(rand() % rows + 1, i + 1);
+        std::cout << *iter;
     }
-    // Move cursor to a random position in the current column
-    setCursorPosition(rand() % rows + 1, i + 1);
-    std::cout << *iter;
-  }
-  std::cout.flush();
+    std::cout.flush();
 }
