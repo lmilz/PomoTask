@@ -1,13 +1,34 @@
 ---
-BasedOnStyle: Google
-IndentWidth: 2
-TabWidth: 2
-UseTab: Never  
-BreakBeforeBraces: Attach 
+Language:        Cpp
+BasedOnStyle:    Google
+Standard:        c++20
+IndentWidth:     4
+TabWidth:        4
+UseTab:          Never
+AllowShortFunctionsOnASingleLine: InlineOnly
 AllowShortIfStatementsOnASingleLine: false
-ColumnLimit: 100            
-DerivePointerAlignment: false
+AllowShortLoopsOnASingleLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+BinPackArguments: false
+BinPackParameters: false
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass:            true
+  AfterControlStatement: false
+  AfterEnum:             true
+  AfterFunction:         true
+  AfterNamespace:        false
+  BeforeElse:            true
+  BeforeCatch:           true
+  SplitEmptyFunction:    true
+ColumnLimit: 100
+BreakBeforeBinaryOperators: All
+Cpp11BracedListStyle: true
+SpaceBeforeCpp11BracedList: false
 PointerAlignment: Left
-SortIncludes: true 
-NamespaceIndentation: None 
-IncludeBlocks: Preserve
+AlignTrailingComments: true
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+SpacesInAngles: false
+SortIncludes: true
+SortUsingDeclarations: true
