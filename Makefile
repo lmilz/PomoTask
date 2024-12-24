@@ -8,9 +8,9 @@ TODO_DIR = $(SRC_DIR)/ToDo
 POMODORO_DIR = $(SRC_DIR)/Pomodoro
 
 # Alle Quell-Dateien
-APP_SOURCES = $(wildcard $(APP_DIR)/src/*.cpp) $(wildcard $(APP_DIR)/src/*.h)
-TODO_SOURCES = $(wildcard $(TODO_DIR)/src/*.cpp) $(wildcard $(TODO_DIR)/src/*.h)
-POMODORO_SOURCES = $(wildcard $(POMODORO_DIR)/src/*.cpp) $(wildcard $(POMODORO_DIR)/src/*.h)
+APP_SOURCES = $(wildcard $(APP_DIR)/*/*.cpp) $(wildcard $(APP_DIR)/*/*.h)
+TODO_SOURCES = $(wildcard $(TODO_DIR)/*/*.cpp) $(wildcard $(TODO_DIR)/*/*.h)
+POMODORO_SOURCES = $(wildcard $(POMODORO_DIR)/*/*.cpp) $(wildcard $(POMODORO_DIR)/*/*.h)
 
 # clang-tidy
 tidy: $(APP_SOURCES) $(TODO_SOURCES) $(POMODORO_SOURCES_SOURCES)

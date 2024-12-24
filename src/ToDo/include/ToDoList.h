@@ -1,7 +1,7 @@
 // MIT License
 //
 // Copyright (c) 2024 Lars Milz
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -27,18 +27,20 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+
 #include "ToDo.h"
 
-class ToDoList {
- public:
-  ToDoList();
+class ToDoList
+{
+   public:
+    ToDoList();
 
-  void addItem(const ToDo& todo);
-  void removeItem(const ToDo& todo);
-  std::vector<ToDo> showList() const;
+    void addItem(const ToDo& todo);
+    void removeItem(const ToDo& todo);
+    std::vector<ToDo> showList() const;
 
- private:
-  std::vector<ToDo> todo_list;
+   private:
+    std::vector<ToDo> todo_list;
 };
 
 #endif /* _TODO_LIST_H */

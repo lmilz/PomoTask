@@ -1,7 +1,7 @@
 // MIT License
 //
 // Copyright (c) 2024 Lars Milz
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -28,17 +28,18 @@
 #include <iostream>
 #include <thread>
 
-class Pomodoro {
- public:
-  Pomodoro(int focustime, int breaktime);
+class Pomodoro
+{
+   public:
+    Pomodoro(int focustime, int breaktime);
 
-  bool start();
-  void setFocusTime(const int new_focustime);
-  int getFocusTime() const;
+    bool start();
+    void setFocusTime(const int new_focustime);
+    int getFocusTime() const;
 
- private:
-  int focustime;
-  int breaktime;
+   private:
+    int focustime;
+    int breaktime;
 };
 
 #endif /* _POMODORO_H */
