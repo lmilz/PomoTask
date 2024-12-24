@@ -8,6 +8,7 @@ typedef struct {
     std::string name;
     std::string description;
     std::string status;
+    std::string due_date;
 } ToDo;
 
 #endif /* _TODO_H */
