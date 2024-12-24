@@ -1,0 +1,40 @@
+---
+Checks: >
+  clang-diagnostic-*,
+  clang-analyzer-*,
+  readability-*,
+  performance-*,
+  modernize-*,
+  bugprone-*,
+  misc-*,
+  -readability-identifier-length,
+  -readability-magic-numbers,
+  -modernize-use-auto,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -modernize-use-nodiscard,
+  -modernize-use-trailing-return-type,
+  -bugprone-easily-swappable-parameters,
+  -google-readability-function-size,
+  -google-runtime-int
+
+CheckOptions:
+  - key: readability-identifier-naming.VariableCase
+    value: lower_case
+  - key: readability-identifier-naming.FunctionCase
+    value: CamelCase
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.MemberCase
+    value: lower_case
+  - key: readability-identifier-naming.PrivateMemberSuffix
+    value: _
+  - key: readability-identifier-naming.GlobalConstantPrefix
+    value: k
+  - key: performance-unnecessary-value-param.IncludeStyle
+    value: llvm
+  - key: modernize-loop-convert.MinConfidence
+    value: reasonable
+
+WarningsAsErrors: '*'
+HeaderFilterRegex: '.*'
+FormatStyle: file
