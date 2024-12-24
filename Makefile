@@ -9,7 +9,7 @@ APPDIR = app
 # Compiler und Flags
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++20 -I/usr/include -I/usr/local/include/CppUTest -I$(APPDIR) $(foreach dir, $(shell find $(SRCDIR) -type d), -I$(dir))
-LDFLAGS = -L$(LIBDIR) -lsqlite3 -lPomoTask -lCppUTest -lCppUTestExt
+LDFLAGS = -L/usr/lib/x86_64-linux-gnu -L$(LIBDIR) -lsqlite3 -lPomoTask -lCppUTest -lCppUTestExt
 
 # Ziel-Bibliothek
 TARGET = $(LIBDIR)/libPomoTask.a
@@ -58,11 +58,11 @@ $(OBJDIR)/App_%.o: $(APPDIR)/%.cpp | $(OBJDIR)
 
 # Linke Testausführbare Datei
 $(TEST_TARGET): $(TEST_OBJECTS) $(ALL_TESTS_OBJ) $(TARGET) | $(BINDIR)
-	$(CXX) $(CXXFLAGS) $(TEST_OBJECTS) $(ALL_TESTS_OBJ) $(LDFLAGS) -o $@
+	$(CXX) $(TEST_OBJECTS) $(ALL_TESTS_OBJ) $(TARGET) $(LDFLAGS) -o $@
 
 # Linke CLI-Anwendung
 $(APP_TARGET): $(APP_OBJECTS) $(TARGET) | $(BINDIR)
-	$(CXX) $(CXXFLAGS) $(APP_OBJECTS) $(LDFLAGS) -o $@
+	$(CXX) $(APP_OBJECTS) $(TARGET) $(LDFLAGS) -o $@
 
 # Verzeichnisse erstellen
 $(OBJDIR):
@@ -81,9 +81,9 @@ clean:
 # Tests ausführen
 test: $(TEST_TARGET)
 	$(TEST_TARGET)
-	
+
 # CLI-Anwendung erstellen
 app: $(APP_TARGET)
 
 # Phony-Ziele
-.PHONY: all clean test
+.PHONY: all clean test app
