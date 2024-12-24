@@ -1,7 +1,7 @@
 // MIT License
 //
 // Copyright (c) 2024 Lars Milz
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -22,16 +22,17 @@
 
 #include "PomoTaskApp.h"
 
-int main(int argc, char* argv[]) {
-  if (argc == 1) {
-    std::cout << "Verwenden Sie --help für eine Liste der Befehle.\n";
+int main(int argc, char* argv[])
+{
+    if (argc == 1) {
+        std::cout << "Verwenden Sie --help für eine Liste der Befehle.\n";
+        return 0;
+    }
+
+    PomoTaskApp* app = new PomoTaskApp(argc, argv);
+
+    app->execute();
+
+    delete app;
     return 0;
-  }
-
-  PomoTaskApp* app = new PomoTaskApp(argc, argv);
-
-  app->execute();
-
-  delete app;
-  return 0;
 }

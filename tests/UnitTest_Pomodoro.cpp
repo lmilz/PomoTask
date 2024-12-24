@@ -1,7 +1,7 @@
 // MIT License
 //
 // Copyright (c) 2024 Lars Milz
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -24,12 +24,22 @@
 #include "Pomodoro.h"
 
 // Test group for the Pomodoro class
-TEST_GROUP(PomodoroTests) {
-  Pomodoro* pom;
+TEST_GROUP(PomodoroTests)
+{
+    Pomodoro* pom;
 
-  void setup() { pom = new Pomodoro(10, 20); }
+    void setup()
+    {
+        pom = new Pomodoro(10, 20);
+    }
 
-  void teardown() { delete pom; }
+    void teardown()
+    {
+        delete pom;
+    }
 };
 
-TEST(PomodoroTests, ConstructorInitializesValues) { CHECK_EQUAL(pom->getFocusTime(), 600); }
+TEST(PomodoroTests, ConstructorInitializesValues)
+{
+    CHECK_EQUAL(pom->getFocusTime(), 600);
+}

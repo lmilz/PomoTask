@@ -1,7 +1,7 @@
 // MIT License
 //
 // Copyright (c) 2024 Lars Milz
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -21,22 +21,20 @@
 // SOFTWARE.
 
 #include <filesystem>
+
 #include "CppUTest/TestHarness.h"
 #include "Database.h"
 
-TEST_GROUP(DatabaseTest) {
-  void setup() override {
-  }
+TEST_GROUP(DatabaseTest){void setup() override{}
 
-  void teardown() override {
-  }
-};
+                         void teardown() override{}};
 
-TEST(DatabaseTest, OpenDatabase) { 
-  Database* db = new Database(":memory:"); // create data in memory
-  sqlite3* connection = db->getConnection();
+TEST(DatabaseTest, OpenDatabase)
+{
+    Database* db = new Database(":memory:");  // create data in memory
+    sqlite3* connection = db->getConnection();
 
-  CHECK(connection != nullptr);
-  
-  delete db;
+    CHECK(connection != nullptr);
+
+    delete db;
 }
