@@ -72,3 +72,8 @@ This software uses the following third-party libraries:
   More information: [https://cpputest.github.io](https://cpputest.github.io)
 
 The full license text for CppUTest can be found in the [LICENSE](https://github.com/cpputest/cpputest?tab=BSD-3-Clause-1-ov-file#readme) file.
+
+- **SQLite3**  
+  License: Public Domain  
+  Copyright: 2000-2024, D. Richard Hipp  
+  More information: [https://sqlite.org](https://sqlite.org)  
