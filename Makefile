@@ -12,11 +12,8 @@ TODO_SOURCES = $(wildcard $(TODO_DIR)/src/*.cpp) $(wildcard $(TODO_DIR)/include/
 POMODORO_SOURCES = $(wildcard $(POMODORO_DIR)/src/*.cpp) $(wildcard $(POMODORO_DIR)/include/*.h)
 
 # clang-tidy
-tidy: $(APP_SOURCES) $(TODO_SOURCES) $(POMODORO_SOURCES)
-	@for file in $(APP_SOURCES) $(TODO_SOURCES) $(POMODORO_SOURCES); do \
-		$(CLANG_TIDY) $$file --; \
-	done
-
+tidy:
+	find ./src -name '*.cpp' -exec clang-tidy {} -- -std=c++20 -I./src/app/include -I./src/Pomodoro/include -I./src/ToDo/include \;
 # clang-format
 format:
 	$(CLANG_FORMAT) $(FORMAT_FLAGS) -i $(APP_SOURCES) $(TODO_SOURCES) $(POMODORO_SOURCES)
