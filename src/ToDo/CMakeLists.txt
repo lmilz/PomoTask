@@ -9,6 +9,7 @@ target_link_libraries(ToDo PRIVATE sqlite3)
 # google test
 add_executable(test_todo
     tests/UnitTest_ToDo.cpp
+    tests/UnitTest_Database.cpp
 )
 
 target_link_libraries(test_todo PRIVATE ToDo GTest::GTest GTest::Main)
