@@ -30,8 +30,9 @@ A lightweight and efficient command-line application that combines the Pomodoro 
 ### Prerequisites
 
 - A C++ compiler supporting C++20 or higher.
+- cmake.
 - Make.
-- Test Framework cpputest
+- Test Framework google test
 
 ### Installation
 
@@ -43,10 +44,18 @@ A lightweight and efficient command-line application that combines the Pomodoro 
 
 2. Build the project:
    ```bash
-   make
+   mkdir build
+   cd build
+   cmake ..
+   cmake --build .
    ```
 
-3. Run the application:
+3. Test the project:
+   ```bash
+   ctest
+   ```
+
+34 Run the application:
    ```bash
    ./PomoTask
    ```
@@ -66,12 +75,12 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 This software uses the following third-party libraries:
 
-- **CppUTest**  
-  License: Modified BSD License (3-Clause BSD)  
-  Copyright: 2007-2023, CppUTest developers  
-  More information: [https://cpputest.github.io](https://cpputest.github.io)
+- **Google Test (gtest)**  
+  License: Apache License 2.0  
+  Copyright: 2008-2024, Google LLC  
+  More information: [https://github.com/google/googletest](https://github.com/google/googletest)
 
-The full license text for CppUTest can be found in the [LICENSE](https://github.com/cpputest/cpputest?tab=BSD-3-Clause-1-ov-file#readme) file.
+Google Test is licensed under the Apache License 2.0, which allows the library to be used, modified, and distributed freely for any purpose. The full license text is available in the [LICENSE](https://github.com/google/googletest/blob/main/LICENSE) file.
 
 - **SQLite3**  
   License: Public Domain  
