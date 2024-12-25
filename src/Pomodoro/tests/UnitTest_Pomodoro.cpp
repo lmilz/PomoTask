@@ -20,26 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "CppUTest/TestHarness.h"
+#include <gtest/gtest.h>
 #include "Pomodoro.h"
-
-// Test group for the Pomodoro class
-TEST_GROUP(PomodoroTests)
-{
-    Pomodoro* pom;
-
-    void setup()
-    {
-        pom = new Pomodoro(10, 20);
-    }
-
-    void teardown()
-    {
-        delete pom;
-    }
-};
 
 TEST(PomodoroTests, ConstructorInitializesValues)
 {
-    CHECK_EQUAL(pom->getFocusTime(), 600);
+    Pomodoro* pom = new Pomodoro(10, 20);
+    EXPECT_EQ(pom->getFocusTime(), 600);
+    delete pom;
 }

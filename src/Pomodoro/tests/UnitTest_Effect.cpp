@@ -20,8 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "CppUTest/TestHarness.h"
-#include "CppUTestExt/MockSupport.h"
+#include <gtest/gtest.h>
 #include "Effect.h"
 
 // Mock implementation for testing terminal-specific methods
@@ -39,43 +38,35 @@ class MockEffect : public Effect
     void testClearScreen() { clearScreen(); }
 };
 
-// Test group for the BaseEffect class
-TEST_GROUP(EffectTests)
-{
-    MockEffect* effect;
-
-    void setup()
-    {
-        effect = new MockEffect(10, 20, 30);
-    }
-
-    void teardown()
-    {
-        delete effect;
-    }
-};
-
 TEST(EffectTests, ConstructorInitializesValues)
 {
-    CHECK_EQUAL(10, effect->getRows());
-    CHECK_EQUAL(20, effect->getCols());
-    CHECK_EQUAL(30, effect->getColor());
+    MockEffect* effect = new MockEffect(10, 20, 30);
+    EXPECT_EQ(10, effect->getRows());
+    EXPECT_EQ(20, effect->getCols());
+    EXPECT_EQ(30, effect->getColor());
+    delete effect;
 }
 
 TEST(EffectTests, Setter_Getter_Rows)
 {
+    MockEffect* effect = new MockEffect(10, 20, 30);
     effect->setRows(40);
-    CHECK_EQUAL(40, effect->getRows());
+    EXPECT_EQ(40, effect->getRows());
+    delete effect;
 }
 
 TEST(EffectTests, Setter_Getter_Cols)
 {
+    MockEffect* effect = new MockEffect(10, 20, 30);
     effect->setCols(50);
-    CHECK_EQUAL(50, effect->getCols());
+    EXPECT_EQ(50, effect->getCols());
+    delete effect;
 }
 
 TEST(EffectTests, Setter_Getter_Color)
 {
+    MockEffect* effect = new MockEffect(10, 20, 30);
     effect->setColor(60);
-    CHECK_EQUAL(60, effect->getColor());
+    EXPECT_EQ(60, effect->getColor());
+    delete effect;
 }
