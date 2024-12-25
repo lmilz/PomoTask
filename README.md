@@ -76,11 +76,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 This software uses the following third-party libraries:
 
 - **Google Test (gtest)**  
-  License: Apache License 2.0  
+  License: License: [Apache License 2.0](https://github.com/google/googletest/blob/main/LICENSE)
   Copyright: 2008-2024, Google LLC  
   More information: [https://github.com/google/googletest](https://github.com/google/googletest)
-  
-  Google Test is licensed under the Apache License 2.0, which allows the library to be used, modified, and distributed freely for any purpose. The full license text is available in the [LICENSE](https://github.com/google/googletest/blob/main/LICENSE) file.
 
 - **SQLite3**  
   License: Public Domain  
