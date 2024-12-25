@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 #include <gtest/gtest.h>
+
 #include "Pomodoro.h"
 
 TEST(PomodoroTests, ConstructorInitializesValues)

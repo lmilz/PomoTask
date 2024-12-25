@@ -20,9 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include <gtest/gtest.h>
+
 #include <algorithm>
 
-#include <gtest/gtest.h>
 #include "ToDo.h"
 #include "ToDoList.h"
 

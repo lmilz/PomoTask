@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 #include <gtest/gtest.h>
+
 #include "Effect.h"
 
 // Mock implementation for testing terminal-specific methods
