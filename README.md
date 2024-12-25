@@ -79,6 +79,7 @@ This software uses the following third-party libraries:
   License: Apache License 2.0  
   Copyright: 2008-2024, Google LLC  
   More information: [https://github.com/google/googletest](https://github.com/google/googletest)
+  
   Google Test is licensed under the Apache License 2.0, which allows the library to be used, modified, and distributed freely for any purpose. The full license text is available in the [LICENSE](https://github.com/google/googletest/blob/main/LICENSE) file.
 
 - **SQLite3**  
