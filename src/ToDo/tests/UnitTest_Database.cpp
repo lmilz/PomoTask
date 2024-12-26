@@ -26,6 +26,13 @@
 #include <stdexcept>
 
 #include "Database.h"
+#include "SQLUtil.h"
+
+TEST(DatabaseTest, SQLStatement)
+{
+    EXPECT_EQ("INSERT OR REPLACE INTO data (name, description, status, due_to) VALUES (?, ?, ?, ?);", SQLUtil::getInsertOrReplaceStatement);
+    EXPECT_EQ("SELECT iname, description, status, due_to FROM data;", SQLUtil::getSelectAllStatement);
+}
 
 TEST(DatabaseTest, OpenDatabase)
 {
