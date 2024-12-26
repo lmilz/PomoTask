@@ -36,6 +36,6 @@ Database::~Database()
 
 void Database::save(const ToDoDTO& dto)
 {
-    std::string sql = "INSERT OR REPLACE INTO data (name, description, status, due_date) VALUES (?, ?, ?, ?);";
+    std::string sql = SQLUtil::getInsertOrReplaceStatement();
     sqlite3_stmt* statement;
 }

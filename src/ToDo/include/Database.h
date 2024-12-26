@@ -30,6 +30,7 @@
 #include <string>
 #include <vector>
 
+#include "SQLUtil.h"
 #include "ToDo.h"
 
 class Database
