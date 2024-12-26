@@ -28,6 +28,9 @@
 
 #include <stdexcept>
 #include <string>
+#include <vector>
+
+#include "ToDo.h"
 
 class Database
 {
@@ -35,7 +38,8 @@ class Database
     Database(const std::string& database_filename);
     virtual ~Database();
 
-    sqlite3* getConnection();
+    void save(const ToDoDTO& dto);
+    std::vector<ToDoDTO> fetchAll();
 
    private:
     sqlite3* database;

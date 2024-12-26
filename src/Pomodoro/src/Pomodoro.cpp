@@ -22,7 +22,7 @@
 
 #include "Pomodoro.h"
 
-Pomodoro::Pomodoro(int focus) : focustime(focus* 60)
+Pomodoro::Pomodoro(int focus) : focustime(focus * 60)
 {
 }
 

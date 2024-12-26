@@ -33,8 +33,3 @@ Database::~Database()
 {
     sqlite3_close(database);
 }
-
-sqlite3* Database::getConnection()
-{
-    return database;
-}

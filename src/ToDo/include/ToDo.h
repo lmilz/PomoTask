@@ -33,4 +33,11 @@ typedef struct {
     std::string due_date;
 } ToDo;
 
+typedef struct {
+    std::string name;
+    std::string description;
+    std::string status;
+    std::string due_date;
+} ToDoDTO;
+
 #endif /* _TODO_H */

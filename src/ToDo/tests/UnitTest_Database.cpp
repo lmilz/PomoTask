@@ -23,15 +23,21 @@
 #include <gtest/gtest.h>
 
 #include <filesystem>
+#include <stdexcept>
 
 #include "Database.h"
 
 TEST(DatabaseTest, OpenDatabase)
 {
     Database* db = new Database(":memory:");  // create data in memory
-    sqlite3* connection = db->getConnection();
 
-    EXPECT_NE(connection, nullptr);
+    EXPECT_NE(db, nullptr);
 
     delete db;
+}
+
+TEST(DatabaseTest, InvalidPathDatabase)
+{
+    EXPECT_THROW(Database* db = new Database("invalid_path/non_existent.db"),
+                 std::runtime_error);  // invald path and non existing database
 }
