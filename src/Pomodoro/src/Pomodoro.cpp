@@ -22,7 +22,7 @@
 
 #include "Pomodoro.h"
 
-Pomodoro::Pomodoro(int focustime, int breaktime) : focustime(focustime * 60), breaktime(breaktime)
+Pomodoro::Pomodoro(int focus) : focustime(focus* 60)
 {
 }
 
@@ -44,9 +44,4 @@ bool Pomodoro::start()
 void Pomodoro::setFocusTime(const int new_focustime)
 {
     focustime = new_focustime * 60;
-}
-
-int Pomodoro::getFocusTime() const
-{
-    return focustime;
 }

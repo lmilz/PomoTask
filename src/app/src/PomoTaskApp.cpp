@@ -25,7 +25,7 @@
 PomoTaskApp::PomoTaskApp(int argc, char* argv[]) : running_app(true)
 {
     todo_list = new ToDo();
-    pomodoro_timer = new Pomodoro(0, 0);
+    pomodoro_timer = new Pomodoro(0);
 
     // interprete command
     if (argc > 1)

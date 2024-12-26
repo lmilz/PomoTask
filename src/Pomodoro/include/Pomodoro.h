@@ -31,15 +31,13 @@
 class Pomodoro
 {
    public:
-    Pomodoro(int focustime, int breaktime);
+    Pomodoro(int focusk);
 
     bool start();
     void setFocusTime(const int new_focustime);
-    int getFocusTime() const;
 
    private:
     int focustime;
-    int breaktime;
 };
 
 #endif /* _POMODORO_H */
