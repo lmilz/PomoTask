@@ -41,3 +41,18 @@ TEST(DatabaseTest, InvalidPathDatabase)
     EXPECT_THROW(Database* db = new Database("invalid_path/non_existent.db"),
                  std::runtime_error);  // invald path and non existing database
 }
+
+TEST(DatabaseTest, SaveAndFetchData)
+{
+    ToDoDTO dto = { .name="Test Task", .description = "Description", .status = "Open", .due_date = "1.1.2025"};
+    Database* db = new Database(":memory:");  // create data in memory
+    ASSERT_NO_THROW(db->save(dto));
+
+    auto results = db->fetchAll();
+    ASSERT_EQ(results.size(), 1);
+    EXPECT_EQ(results[0].name, "Test Task");
+    EXPECT_EQ(results[0].description, "Description");
+    EXPECT_EQ(results[0].status, "Open");
+    EXPECT_EQ(results[0].due_date, "1.1.2025");
+    delete db;    
+}
