@@ -2,6 +2,7 @@
 add_library(ToDo
     src/ToDoList.cpp
     src/Database.cpp
+    src/Schema.cpp
 )
 
 target_include_directories(ToDo PUBLIC include)

@@ -24,6 +24,8 @@
 #define _SCHEMA_H
 
 // Includes
+#include <stdexcept>
+#include <string>
 #include <sqlite3.h>
 
 class Schema
@@ -35,6 +37,8 @@ class Schema
 
    private:
     sqlite3* db;
+    int getCurrentVersion();
+    void setVersion(int version);
 };
 
 #endif /* _SCHEMA_H */
