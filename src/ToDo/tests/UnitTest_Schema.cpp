@@ -32,4 +32,13 @@ TEST(SchemaTest, MigrationSetsCorrectVersion)
 
     Schema schema(db);
     ASSERT_NO_THROW(schema.migrate());
+
+    const char* sql = "PRAGMA user_version;";
+    sqlite3_stmt* stmt;
+    sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr);
+    ASSERT_EQ(sqlite3_step(stmt), SQLITE_ROW);
+    EXPECT_EQ(sqlite3_column_int(stmt, 0), 1);
+
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
 }
