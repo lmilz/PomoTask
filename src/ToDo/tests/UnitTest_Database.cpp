@@ -30,8 +30,11 @@
 
 TEST(DatabaseTest, SQLStatement)
 {
-    EXPECT_EQ("INSERT OR REPLACE INTO data (name, description, status, due_to) VALUES (?, ?, ?, ?);", SQLUtil::getInsertOrReplaceStatement);
-    EXPECT_EQ("SELECT iname, description, status, due_to FROM data;", SQLUtil::getSelectAllStatement);
+    EXPECT_EQ(
+        "INSERT OR REPLACE INTO data (name, description, status, due_to) VALUES (?, ?, ?, ?);",
+        SQLUtil::getInsertOrReplaceStatement);
+    EXPECT_EQ("SELECT iname, description, status, due_to FROM data;",
+              SQLUtil::getSelectAllStatement);
 }
 
 TEST(DatabaseTest, OpenDatabase)
@@ -51,7 +54,10 @@ TEST(DatabaseTest, InvalidPathDatabase)
 
 TEST(DatabaseTest, SaveAndFetchData)
 {
-    ToDoDTO dto = { .name="Test Task", .description = "Description", .status = "Open", .due_date = "1.1.2025"};
+    ToDoDTO dto = {.name = "Test Task",
+                   .description = "Description",
+                   .status = "Open",
+                   .due_date = "1.1.2025"};
     Database* db = new Database(":memory:");  // create data in memory
     ASSERT_NO_THROW(db->save(dto));
 
@@ -61,5 +67,5 @@ TEST(DatabaseTest, SaveAndFetchData)
     EXPECT_EQ(results[0].description, "Description");
     EXPECT_EQ(results[0].status, "Open");
     EXPECT_EQ(results[0].due_date, "1.1.2025");
-    delete db;    
+    delete db;
 }

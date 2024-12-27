@@ -20,25 +20,21 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _SQLUTIL_H
-#define _SQLUTIL_H
+#ifndef _SCHEMA_H
+#define _SCHEMA_H
 
 // Includes
-#include <string>
+#include <sqlite3.h>
 
-class SQLUtil
+class Schema
 {
    public:
-    static std::string getInsertOrReplaceStatement()
-    {
-        return "INSERT OR REPLACE INTO data (name, description, status, due_to) VALUES (?, ?, ?, "
-               "?);";
-    }
+    explicit Schema(sqlite3* database);
 
-    static std::string getSelectAllStatement()
-    {
-        return "SELECT iname, description, status, due_to FROM data;";
-    }
+    void migrate();
+
+   private:
+    sqlite3* db;
 };
 
-#endif /* _SQLUTILH */
+#endif /* _SCHEMA_H */

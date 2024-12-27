@@ -20,25 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _SQLUTIL_H
-#define _SQLUTIL_H
+#include <gtest/gtest.h>
+#include <sqlite3.h>
 
-// Includes
-#include <string>
-
-class SQLUtil
+TEST(SchemaTest, MigrationSetsCorrectVersion)
 {
-   public:
-    static std::string getInsertOrReplaceStatement()
-    {
-        return "INSERT OR REPLACE INTO data (name, description, status, due_to) VALUES (?, ?, ?, "
-               "?);";
-    }
-
-    static std::string getSelectAllStatement()
-    {
-        return "SELECT iname, description, status, due_to FROM data;";
-    }
-};
-
-#endif /* _SQLUTILH */
+}
