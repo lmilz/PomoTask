@@ -26,18 +26,18 @@ Schema::Schema(sqlite3* database) : db(database) {}
 
 int Schema::getCurrentVersion() {
     const char* sql = "PRAGMA user_version;";
-    sqlite3_stmt* stmt;
+    sqlite3_stmt* statement;
 
-    if (sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr) != SQLITE_OK) {
+    if (sqlite3_prepare_v2(db, sql, -1, &statement, nullptr) != SQLITE_OK) {
         throw std::runtime_error("Failed to fetch schema version");
     }
 
     int version = 0;
-    if (sqlite3_step(stmt) == SQLITE_ROW) {
-        version = sqlite3_column_int(stmt, 0);
+    if (sqlite3_step(statement) == SQLITE_ROW) {
+        version = sqlite3_column_int(statement, 0);
     }
 
-    sqlite3_finalize(stmt);
+    sqlite3_finalize(statement);
     return version;
 }
 
@@ -54,11 +54,10 @@ void Schema::migrate() {
     if (currentVersion < 1) {
         const char* sql = R"(
             CREATE TABLE data (
-                id TEXT PRIMARY KEY,
-                name TEXT NOT NULL,
-                value TEXT,
-                created_at TEXT,
-                updated_at TEXT
+                name TEXT PRIMARY KEY,
+                description TEXT NOT NULL,
+                status TEXT,
+                due_date TEXT
             );
         )";
         if (sqlite3_exec(db, sql, nullptr, nullptr, nullptr) != SQLITE_OK) {

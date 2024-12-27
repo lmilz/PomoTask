@@ -38,4 +38,42 @@ void Database::save(const ToDoDTO& dto)
 {
     std::string sql = SQLUtil::getInsertOrReplaceStatement();
     sqlite3_stmt* statement;
+
+    if (sqlite3_prepare_v2(database, sql.c_str(), -1, &statement, nullptr) != SQLITE_OK) {
+        throw std::runtime_error("Failed to prepare save statement");
+    }
+
+    sqlite3_bind_text(statement, 1, dto.name.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 2, dto.description.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 3, dto.status.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 4, dto.due_date.c_str(), -1, SQLITE_STATIC);
+
+    if (sqlite3_step(statement) != SQLITE_DONE) {
+        sqlite3_finalize(statement);
+        throw std::runtime_error("Failed to execute save statement");
+    }
+
+    sqlite3_finalize(statement);    
+}
+
+std::vector<ToDoDTO> Database::fetchAll() {
+    std::vector<ToDoDTO> results;
+    const char* sql = "SELECT name, description, status, due_date FROM data;";
+    sqlite3_stmt* statement;
+
+    if (sqlite3_prepare_v2(database, sql, -1, &statement, nullptr) != SQLITE_OK) {
+        throw std::runtime_error("Failed to prepare fetch statement");
+    }
+
+    while (sqlite3_step(statement) == SQLITE_ROW) {
+        ToDoDTO dto;
+        dto.name = reinterpret_cast<const char*>(sqlite3_column_text(statement, 0));
+        dto.description = reinterpret_cast<const char*>(sqlite3_column_text(statement, 1));
+        dto.status = reinterpret_cast<const char*>(sqlite3_column_text(statement, 2));
+        dto.due_date = reinterpret_cast<const char*>(sqlite3_column_text(statement, 3));
+        results.push_back(dto);
+    }
+
+    sqlite3_finalize(statement);
+    return results;
 }

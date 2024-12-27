@@ -31,13 +31,13 @@ class SQLUtil
    public:
     static std::string getInsertOrReplaceStatement()
     {
-        return "INSERT OR REPLACE INTO data (name, description, status, due_to) VALUES (?, ?, ?, "
+        return "INSERT OR REPLACE INTO data (name, description, status, due_date) VALUES (?, ?, ?, "
                "?);";
     }
 
     static std::string getSelectAllStatement()
     {
-        return "SELECT iname, description, status, due_to FROM data;";
+        return "SELECT iname, description, status, due_date FROM data;";
     }
 };
 

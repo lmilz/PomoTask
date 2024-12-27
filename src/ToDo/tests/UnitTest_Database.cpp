@@ -31,9 +31,9 @@
 TEST(DatabaseTest, SQLStatement)
 {
     EXPECT_EQ(
-        "INSERT OR REPLACE INTO data (name, description, status, due_to) VALUES (?, ?, ?, ?);",
+        "INSERT OR REPLACE INTO data (name, description, status, due_date) VALUES (?, ?, ?, ?);",
         SQLUtil::getInsertOrReplaceStatement());
-    EXPECT_EQ("SELECT iname, description, status, due_to FROM data;",
+    EXPECT_EQ("SELECT iname, description, status, due_date FROM data;",
               SQLUtil::getSelectAllStatement());
 }
 
@@ -61,11 +61,11 @@ TEST(DatabaseTest, SaveAndFetchData)
     Database* db = new Database(":memory:");  // create data in memory
     ASSERT_NO_THROW(db->save(dto));
 
-    //auto results = db->fetchAll();
-    //ASSERT_EQ(results.size(), 1);
-    //EXPECT_EQ(results[0].name, "Test Task");
-    //EXPECT_EQ(results[0].description, "Description");
-    //EXPECT_EQ(results[0].status, "Open");
-    //EXPECT_EQ(results[0].due_date, "1.1.2025");
+    auto results = db->fetchAll();
+    ASSERT_EQ(results.size(), 1);
+    EXPECT_EQ(results[0].name, "Test Task");
+    EXPECT_EQ(results[0].description, "Description");
+    EXPECT_EQ(results[0].status, "Open");
+    EXPECT_EQ(results[0].due_date, "1.1.2025");
     delete db;
 }
