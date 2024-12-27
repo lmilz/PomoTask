@@ -23,6 +23,13 @@
 #include <gtest/gtest.h>
 #include <sqlite3.h>
 
+#include "Schema.h"
+
 TEST(SchemaTest, MigrationSetsCorrectVersion)
 {
+    sqlite3* db;
+    sqlite3_open(":memory:", &db);
+
+    Schema schema(db);
+    ASSERT_NO_THROW(schema.migrate());
 }
