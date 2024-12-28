@@ -31,6 +31,7 @@
 #include <vector>
 
 #include "SQLUtil.h"
+#include "Schema.h"
 #include "ToDo.h"
 
 class Database
