@@ -60,7 +60,26 @@ TEST(ToDoListTest, AddToDos)
     delete test_obj;
 }
 
-TEST(ToDoListTest, RemoveToDo)
+TEST(ToDoListTest, ConvertToDoIntoToDoDTO)
+{
+    ToDo todo1;
+    ToDo todo2;
+    // ToDo 1
+    todo1.name = "Test Task 1";
+    todo1.description = "Test Task 1 Description";
+    todo1.status = "Todo";
+    todo1.due_date = "1.1.2025";
+    // ToDo 2
+    todo2.name = "Test Task 2";
+    todo2.description = "Test Task 2 Description";
+    todo2.status = "Done";
+    todo2.due_date = "31.1.2025";
+
+    ToDoDTO todo1_tdo;
+    ToDoDTO todo2_tdo;
+}
+
+/*TEST(ToDoListTest, RemoveToDo)
 {
     ToDoList* test_obj = new ToDoList();
     ToDo todo1;
@@ -87,4 +106,4 @@ TEST(ToDoListTest, RemoveToDo)
     EXPECT_EQ(list[0].due_date, "31.1.2025");
 
     delete test_obj;
-}
+}*/

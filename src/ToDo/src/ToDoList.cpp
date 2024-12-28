@@ -24,14 +24,20 @@
 
 ToDoList::ToDoList()
 {
+    todo_list = new Database("todo.db");
+}
+
+ToDoList::~ToDoList()
+{
+    delete todo_list;
 }
 
 void ToDoList::addItem(const ToDo& todo)
 {
-    todo_list.push_back(todo);
+    todo_list->save(0);
 }
 
-void ToDoList::removeItem(const ToDo& todo)
+/*void ToDoList::removeItem(const ToDo& todo)
 {
     auto iter = std::find_if(todo_list.begin(), todo_list.end(), [&todo](const ToDo& e) {
         return e.name == todo.name && e.description == todo.description && e.status == todo.status
@@ -41,9 +47,9 @@ void ToDoList::removeItem(const ToDo& todo)
     if (iter != todo_list.end()) {
         todo_list.erase(iter);
     }
-}
+}*/
 
 std::vector<ToDo> ToDoList::showList() const
 {
-    return todo_list;
+    return todo_list->fetchAll();;
 }

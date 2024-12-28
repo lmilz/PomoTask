@@ -28,19 +28,21 @@
 #include <string>
 #include <vector>
 
+#include "Database.h"
 #include "ToDo.h"
 
 class ToDoList
 {
    public:
     ToDoList();
+    virtual ~ToDoList();
 
     void addItem(const ToDo& todo);
-    void removeItem(const ToDo& todo);
+    //void removeItem(const ToDo& todo);
     std::vector<ToDo> showList() const;
 
    private:
-    std::vector<ToDo> todo_list;
+    Database* todo_list;
 };
 
 #endif /* _TODO_LIST_H */
