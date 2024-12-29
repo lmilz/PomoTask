@@ -20,43 +20,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "ToDoList.h"
+#include "ToDo.h"
 
-ToDoList::ToDoList()
-{
-    todo_list = new Database("todo.db");
+ToDo::ToDo(const std::string& name, const std::string& description, const std::string& status, const std::string& due_date) {
+    this->name = name;
+    this->description = description;
+    this->status = status;
+    this->due_date = due_date;
 }
 
-ToDoList::~ToDoList()
-{
-    delete todo_list;
-}
+ToDoDTO ToDo::toDTO() const {
+    ToDoDTO dto = { .name = this->name, .description = this->description, .status = this->status, .due_date = this->due_date };
 
-void ToDoList::addItem(const ToDo& todo)
-{
-    todo_list->save(todo.toDTO());
-}
-
-/*void ToDoList::removeItem(const ToDo& todo)
-{
-    auto iter = std::find_if(todo_list.begin(), todo_list.end(), [&todo](const ToDo& e) {
-        return e.name == todo.name && e.description == todo.description && e.status == todo.status
-               && e.due_date == todo.due_date;
-    });
-
-    if (iter != todo_list.end()) {
-        todo_list.erase(iter);
-    }
-}*/
-
-std::vector<ToDo> ToDoList::showList() const
-{
-    std::vector<ToDo> temp_list;
-    auto list = todo_list->fetchAll();
-    
-    for (auto item : list) {
-        temp_list.push_back(ToDo::fromDTO(item));
-    }
-
-    return temp_list;
+    return dto;
 }

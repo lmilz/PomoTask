@@ -39,6 +39,7 @@
 #include "MatrixEffect.h"
 #include "Pomodoro.h"
 #include "RainEffect.h"
+#include "ToDoList.h"
 #include "ToDo.h"
 
 class PomoTaskApp
@@ -49,7 +50,7 @@ class PomoTaskApp
     void execute();
 
    private:
-    ToDo* todo_list;
+    ToDoList* todo_list;
     Pomodoro* pomodoro_timer;
     std::unique_ptr<Effect> effect;
     std::string command;

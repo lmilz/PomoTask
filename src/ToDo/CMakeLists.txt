@@ -1,5 +1,6 @@
 # todo lib
 add_library(ToDo
+    src/ToDo.cpp
     src/ToDoList.cpp
     src/Database.cpp
     src/Schema.cpp

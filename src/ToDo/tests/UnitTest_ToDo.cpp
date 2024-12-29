@@ -30,53 +30,50 @@
 TEST(ToDoListTest, AddToDos)
 {
     ToDoList* test_obj = new ToDoList();
-    ToDo todo1;
-    ToDo todo2;
-    // ToDo 1
-    todo1.name = "Test Task 1";
-    todo1.description = "Test Task 1 Description";
-    todo1.status = "Todo";
-    todo1.due_date = "1.1.2025";
-    // ToDo 2
-    todo2.name = "Test Task 2";
-    todo2.description = "Test Task 2 Description";
-    todo2.status = "Done";
-    todo2.due_date = "31.1.2025";
+    ToDo todo1("Test Task 1", "Test Task 1 Description", "Todo", "1.1.2025");
+    ToDo todo2("Test Task 2", "Test Task 2 Description", "Done", "31.1.2025");
 
     test_obj->addItem(todo1);
     test_obj->addItem(todo2);
     auto list = test_obj->showList();
 
-    EXPECT_EQ(list[0].name, "Test Task 1");
-    EXPECT_EQ(list[0].description, "Test Task 1 Description");
-    EXPECT_EQ(list[0].status, "Todo");
-    EXPECT_EQ(list[0].due_date, "1.1.2025");
+    ASSERT_EQ(list.size(), 2);
+    ToDoDTO dto1 = list[0].toDTO();
+    ToDoDTO dto2 = list[1].toDTO();
 
-    EXPECT_EQ(list[1].name, "Test Task 2");
-    EXPECT_EQ(list[1].description, "Test Task 2 Description");
-    EXPECT_EQ(list[1].status, "Done");
-    EXPECT_EQ(list[1].due_date, "31.1.2025");
+    EXPECT_EQ(dto1.name, "Test Task 1");
+    EXPECT_EQ(dto1.description, "Test Task 1 Description");
+    EXPECT_EQ(dto1.status, "Todo");
+    EXPECT_EQ(dto1.due_date, "1.1.2025");
+
+    EXPECT_EQ(dto2.name, "Test Task 2");
+    EXPECT_EQ(dto2.description, "Test Task 2 Description");
+    EXPECT_EQ(dto2.status, "Done");
+    EXPECT_EQ(dto2.due_date, "31.1.2025");
 
     delete test_obj;
 }
 
 TEST(ToDoListTest, ConvertToDoIntoToDoDTO)
 {
-    ToDo todo1;
-    ToDo todo2;
-    // ToDo 1
-    todo1.name = "Test Task 1";
-    todo1.description = "Test Task 1 Description";
-    todo1.status = "Todo";
-    todo1.due_date = "1.1.2025";
-    // ToDo 2
-    todo2.name = "Test Task 2";
-    todo2.description = "Test Task 2 Description";
-    todo2.status = "Done";
-    todo2.due_date = "31.1.2025";
+    // Data transfer objects
+    ToDoDTO todo1_dto = { .name = "Test Task 1", .description = "Test Task 1 Description", .status = "Todo", .due_date = "1.1.2025"};
+    ToDoDTO todo2_dto = { .name = "Test Task 2", .description = "Test Task 2 Description", .status = "Done", .due_date = "31.1.2025"};
 
-    ToDoDTO todo1_tdo;
-    ToDoDTO todo2_tdo;
+    ToDo todo1 = ToDo::fromDTO(todo1_dto);
+    ToDo todo2 = ToDo::fromDTO(todo2_dto);
+    ToDoDTO dto1 = todo1.toDTO();
+    ToDoDTO dto2 = todo2.toDTO();
+
+    EXPECT_EQ(dto1.name, "Test Task 1");
+    EXPECT_EQ(dto1.description, "Test Task 1 Description");
+    EXPECT_EQ(dto1.status, "Todo");
+    EXPECT_EQ(dto1.due_date, "1.1.2025");
+
+    EXPECT_EQ(dto2.name, "Test Task 2");
+    EXPECT_EQ(dto2.description, "Test Task 2 Description");
+    EXPECT_EQ(dto2.status, "Done");
+    EXPECT_EQ(dto2.due_date, "31.1.2025");
 }
 
 /*TEST(ToDoListTest, RemoveToDo)

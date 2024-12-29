@@ -24,7 +24,7 @@
 
 PomoTaskApp::PomoTaskApp(int argc, char* argv[]) : running_app(true)
 {
-    todo_list = new ToDo();
+    todo_list = new ToDoList();
     pomodoro_timer = new Pomodoro(0);
 
     // interprete command
