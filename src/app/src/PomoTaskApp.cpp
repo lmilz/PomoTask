@@ -60,6 +60,16 @@ void PomoTaskApp::execute()
         timerThread.join();
         effectThread.join();
     }
+    else if (command == "--add") {
+        ToDoDTO dto = { .name = argument_list[0], .description = argument_list[1], .status = "Backlog", .due_date = argument_list[2] };
+        todo_list->addItem(ToDo::fromDTO(dto));
+    }
+    else if (command == "--show") {
+        for(const auto item : todo_list->showList()) {
+            auto dto = item.toDTO();
+            std::cout << "- " << dto.name << ": " << dto.description << " with status: " << dto.status << " and due date: " << dto.due_date << std::endl;
+        }
+    }
     else {
         std::cout << "Unbekannter Befehl: " << command << "\n";
         std::cout << "Verwenden Sie --help für eine Liste der Befehle.\n";
@@ -79,7 +89,9 @@ void PomoTaskApp::printHelp()
     std::map<std::string, std::string> commands
         = {{"--help                          ", "Zeigt diese Hilfeseite an."},
            {"--pomodoro <focus time> <effect>",
-            "Pomodoro Timer mit der Fokuszeit und den CLI Effekt."}};
+            "Pomodoro Timer mit der Fokuszeit und den CLI Effekt."},
+           {"--add <Name> <Description> <Due Date>", "Neuer ToDo mit Namen, Beschreibung und Fertigungsdatum."},
+           {"--show", "Alle ToDos anzeigen."}};
 
     std::cout << "Verfügbare Befehle:\n";
     for (const auto& [command, description] : commands) {
