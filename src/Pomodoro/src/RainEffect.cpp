@@ -20,6 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+//Includes
+#include <algorithm>
+#include <cstdlib>
+#include <iostream>
+#include "Effect.h"
 #include "RainEffect.h"
 
 RainEffect::RainEffect(int rows, int cols, int color)
@@ -27,9 +32,9 @@ RainEffect::RainEffect(int rows, int cols, int color)
 {
 }
 
-void RainEffect::run()
+void RainEffect::Run()
 {
-    setTextColor();
+    SetTextColor();
 
     if (rand() % 10 < 3) {
         raindrops.push_back({rand() % cols, 0});  // New raindrop at random column
@@ -37,7 +42,7 @@ void RainEffect::run()
 
     // Move existing raindrops down and erase their previous positions
     for (auto& drop : raindrops) {
-        setCursorPosition(drop.y, drop.x);
+        SetCursorPosition(drop.y, drop.x);
         std::cout << " ";
         drop.y++;
     }
@@ -45,7 +50,7 @@ void RainEffect::run()
     // Redraw raindrops in their new positions
     for (const auto& drop : raindrops) {
         if (drop.y < rows) {
-            setCursorPosition(drop.y, drop.x);
+            SetCursorPosition(drop.y, drop.x);
             std::cout << "|";
         }
         else {
@@ -62,7 +67,7 @@ void RainEffect::run()
     // Draw water film
     for (int i = 0; i < cols; ++i) {
         if (waterfilm[i] != ' ') {
-            setCursorPosition(rows, i + 1);
+            SetCursorPosition(rows, i + 1);
             std::cout << waterfilm[i];
         }
     }

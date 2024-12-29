@@ -20,8 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _EFFECT_H
-#define _EFFECT_H
+#ifndef POMOTASK_EFFECT_H
+#define POMOTASK_EFFECT_H
 
 class Effect
 {
@@ -29,23 +29,23 @@ class Effect
     Effect(int rows, int cols, int color);
     virtual ~Effect() = default;
 
-    virtual void run() = 0;
+    virtual void Run() = 0;
 
-    void setRows(const int new_rows);
-    int getRows() const;
-    void setCols(int new_cols);
-    int getCols() const;
-    void setColor(int new_color);
-    int getColor() const;
+    void SetRows(int new_rows);
+    int GetRows() const;
+    void SetCols(int new_cols);
+    int GetCols() const;
+    void SetColor(int new_color);
+    int GetColor() const;
 
    protected:
     int rows;
     int cols;
     int color;
 
-    void setCursorPosition(int row, int col);
-    void setTextColor();
-    void clearScreen();
+    void SetCursorPosition(int row, int col);
+    void SetTextColor();
+    void ClearScreen();
 };
 
-#endif /* _EFFECT_H */
+#endif /* POMOTASK_EFFECT_H */

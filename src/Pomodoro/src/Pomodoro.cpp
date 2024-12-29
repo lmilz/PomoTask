@@ -26,7 +26,7 @@ Pomodoro::Pomodoro(int focus) : focustime(focus * 60)
 {
 }
 
-bool Pomodoro::start()
+bool Pomodoro::Start()
 {
     std::cout << "\033[1;1H";
     std::cout << "\rVerbleibende Zeit: " << focustime / 60 << " Minuten " << focustime % 60
@@ -41,7 +41,7 @@ bool Pomodoro::start()
     return true;
 }
 
-void Pomodoro::setFocusTime(const int new_focustime)
+void Pomodoro::SetFocusTime(const int new_focustime)
 {
     focustime = new_focustime * 60;
 }

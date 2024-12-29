@@ -20,8 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _SCHEMA_H
-#define _SCHEMA_H
+#ifndef POMOTASK_SCHEMA_H
+#define POMOTASK_SCHEMA_H
 
 // Includes
 #include <sqlite3.h>
@@ -34,12 +34,12 @@ class Schema
    public:
     explicit Schema(sqlite3* database);
 
-    void migrate();
+    void Migrate();
 
    private:
     sqlite3* db;
-    int getCurrentVersion();
-    void setVersion(int version);
+    int GetCurrentVersion();
+    void SetVersion(int version);
 };
 
-#endif /* _SCHEMA_H */
+#endif /* POMOTASK_SCHEMA_H */

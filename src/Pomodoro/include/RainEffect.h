@@ -20,13 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _RAINEFFECT_H
-#define _RAINEFFECT_H
+#ifndef POMOTASK_RAINEFFECT_H
+#define POMOTASK_RAINEFFECT_H
 
 // Includes
-#include <algorithm>
-#include <cstdlib>
-#include <iostream>
 #include <vector>
 
 #include "Effect.h"
@@ -36,7 +33,7 @@ class RainEffect : public Effect
    public:
     RainEffect(int rows, int cols, int color = 34);
 
-    void run() override;
+    void Run() override;
 
    private:
     struct Raindrop {
@@ -48,4 +45,4 @@ class RainEffect : public Effect
     std::vector<char> waterfilm;
 };
 
-#endif /* _AINEFFECT_H */
+#endif /* POMOTASK_RAINEFFECT_H */

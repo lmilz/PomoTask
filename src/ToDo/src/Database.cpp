@@ -20,6 +20,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+//Includes
+#include <sqlite3.h>
+
+#include <stdexcept>
+#include <string>
+#include <vector>
+
+#include "SQLUtil.h"
+#include "Schema.h"
+#include "ToDo.h"
 #include "Database.h"
 
 Database::Database(const std::string& database_filename)
@@ -29,7 +39,7 @@ Database::Database(const std::string& database_filename)
     }
 
     Schema schema(database);
-    schema.migrate();
+    schema.Migrate();
 }
 
 Database::~Database()
@@ -37,9 +47,9 @@ Database::~Database()
     sqlite3_close(database);
 }
 
-void Database::save(const ToDoDTO& dto)
+void Database::Save(const ToDoDTO& dto)
 {
-    std::string sql = SQLUtil::getInsertOrReplaceStatement();
+    std::string sql = SQLUtil::GetInsertOrReplaceStatement();
     sqlite3_stmt* statement;
 
     if (sqlite3_prepare_v2(database, sql.c_str(), -1, &statement, nullptr) != SQLITE_OK) {
@@ -59,7 +69,7 @@ void Database::save(const ToDoDTO& dto)
     sqlite3_finalize(statement);
 }
 
-std::vector<ToDoDTO> Database::fetchAll()
+std::vector<ToDoDTO> Database::FetchAll()
 {
     std::vector<ToDoDTO> results;
     const char* sql = "SELECT name, description, status, due_date FROM data;";

@@ -20,6 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+// Includes
+#include <string>
+
 #include "ToDo.h"
 
 ToDo::ToDo(const std::string& name,
@@ -33,7 +36,7 @@ ToDo::ToDo(const std::string& name,
     this->due_date = due_date;
 }
 
-ToDoDTO ToDo::toDTO() const
+ToDoDTO ToDo::ToDTO() const
 {
     ToDoDTO dto = {.name = this->name,
                    .description = this->description,

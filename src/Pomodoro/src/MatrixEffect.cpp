@@ -20,6 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+// Includes
+#include <cstdlib>
+#include <iostream>
+#include "Effect.h"
 #include "MatrixEffect.h"
 
 MatrixEffect::MatrixEffect(int rows, int cols, int color)
@@ -27,9 +31,9 @@ MatrixEffect::MatrixEffect(int rows, int cols, int color)
 {
 }
 
-void MatrixEffect::run()
+void MatrixEffect::Run()
 {
-    setTextColor();
+    SetTextColor();
     int i = 0;
     for (auto iter = columns.begin(); iter != columns.end(); ++iter, ++i) {
         if (rand() % 10 < 2) {
@@ -40,7 +44,7 @@ void MatrixEffect::run()
             *iter = ' ';
         }
         // Move cursor to a random position in the current column
-        setCursorPosition(rand() % rows + 1, i + 1);
+        SetCursorPosition(rand() % rows + 1, i + 1);
         std::cout << *iter;
     }
     std::cout.flush();

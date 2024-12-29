@@ -20,12 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _TODO_LIST_H
-#define _TODO_LIST_H
+#ifndef POMOTASK_TODO_LIST_H
+#define POMOTASK_TODO_LIST_H
 
 // Includes
-#include <algorithm>
-#include <string>
 #include <vector>
 
 #include "Database.h"
@@ -37,12 +35,12 @@ class ToDoList
     ToDoList();
     virtual ~ToDoList();
 
-    void addItem(const ToDo& todo);
+    void AddItem(const ToDo& todo);
     // void removeItem(const ToDo& todo);
-    std::vector<ToDo> showList() const;
+    std::vector<ToDo> ShowList() const;
 
    private:
     Database* todo_list;
 };
 
-#endif /* _TODO_LIST_H */
+#endif /* POMOTASK_TODO_LIST_H */

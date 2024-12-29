@@ -20,18 +20,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _DATABASE_H
-#define _DATABASE_H
+#ifndef POMOTASK_DATABASE_H
+#define POMOTASK_DATABASE_H
 
 // Includes
 #include <sqlite3.h>
 
-#include <stdexcept>
 #include <string>
 #include <vector>
 
-#include "SQLUtil.h"
-#include "Schema.h"
 #include "ToDo.h"
 
 class Database
@@ -40,11 +37,11 @@ class Database
     Database(const std::string& database_filename);
     virtual ~Database();
 
-    void save(const ToDoDTO& dto);
-    std::vector<ToDoDTO> fetchAll();
+    void Save(const ToDoDTO& dto);
+    std::vector<ToDoDTO> FetchAll();
 
    private:
     sqlite3* database;
 };
 
-#endif /* _DATABASE_H */
+#endif /* POMOTASK_DATABASE_H */

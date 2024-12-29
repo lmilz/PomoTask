@@ -20,12 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _MATRIXEFFECT_H
-#define _MATRIXEFFECT_H
+#ifndef POMOTASK_MATRIXEFFECT_H
+#define POMOTASK_MATRIXEFFECT_H
 
 // Includes
-#include <cstdlib>
-#include <iostream>
 #include <vector>
 
 #include "Effect.h"
@@ -35,10 +33,10 @@ class MatrixEffect : public Effect
    public:
     MatrixEffect(int rows, int cols, int color = 32);
 
-    void run() override;
+    void Run() override;
 
    private:
     std::vector<char> columns;
 };
 
-#endif /* _MATRIXEFFECT_H */
+#endif /* POMOTASK_MATRIXEFFECT_H */

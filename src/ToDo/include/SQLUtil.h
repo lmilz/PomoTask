@@ -20,8 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _SQLUTIL_H
-#define _SQLUTIL_H
+#ifndef POMOTASK_SQLUTIL_H
+#define POMOTASK_SQLUTIL_H
 
 // Includes
 #include <string>
@@ -29,16 +29,16 @@
 class SQLUtil
 {
    public:
-    static std::string getInsertOrReplaceStatement()
+    static std::string GetInsertOrReplaceStatement()
     {
         return "INSERT OR REPLACE INTO data (name, description, status, due_date) VALUES (?, ?, ?, "
                "?);";
     }
 
-    static std::string getSelectAllStatement()
+    static std::string GetSelectAllStatement()
     {
-        return "SELECT iname, description, status, due_date FROM data;";
+        return "SELECT name, description, status, due_date FROM data;";
     }
 };
 
-#endif /* _SQLUTILH */
+#endif /* POMOTASK_SQLUTILH */

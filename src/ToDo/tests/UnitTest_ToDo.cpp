@@ -22,24 +22,22 @@
 
 #include <gtest/gtest.h>
 
-#include <algorithm>
-
 #include "ToDo.h"
 #include "ToDoList.h"
 
 TEST(ToDoListTest, AddToDos)
 {
     ToDoList* test_obj = new ToDoList();
-    ToDo todo1("Test Task 1", "Test Task 1 Description", "Todo", "1.1.2025");
-    ToDo todo2("Test Task 2", "Test Task 2 Description", "Done", "31.1.2025");
+    const ToDo todo1("Test Task 1", "Test Task 1 Description", "Todo", "1.1.2025");
+    const ToDo todo2("Test Task 2", "Test Task 2 Description", "Done", "31.1.2025");
 
-    test_obj->addItem(todo1);
-    test_obj->addItem(todo2);
-    auto list = test_obj->showList();
+    test_obj->AddItem(todo1);
+    test_obj->AddItem(todo2);
+    auto list = test_obj->ShowList();
 
     ASSERT_EQ(list.size(), 2);
-    ToDoDTO dto1 = list[0].toDTO();
-    ToDoDTO dto2 = list[1].toDTO();
+    const ToDoDTO dto1 = list[0].ToDTO();
+    const ToDoDTO dto2 = list[1].ToDTO();
 
     EXPECT_EQ(dto1.name, "Test Task 1");
     EXPECT_EQ(dto1.description, "Test Task 1 Description");
@@ -57,19 +55,19 @@ TEST(ToDoListTest, AddToDos)
 TEST(ToDoListTest, ConvertToDoIntoToDoDTO)
 {
     // Data transfer objects
-    ToDoDTO todo1_dto = {.name = "Test Task 1",
+    const ToDoDTO todo1_dto = {.name = "Test Task 1",
                          .description = "Test Task 1 Description",
                          .status = "Todo",
                          .due_date = "1.1.2025"};
-    ToDoDTO todo2_dto = {.name = "Test Task 2",
+    const ToDoDTO todo2_dto = {.name = "Test Task 2",
                          .description = "Test Task 2 Description",
                          .status = "Done",
                          .due_date = "31.1.2025"};
 
-    ToDo todo1 = ToDo::fromDTO(todo1_dto);
-    ToDo todo2 = ToDo::fromDTO(todo2_dto);
-    ToDoDTO dto1 = todo1.toDTO();
-    ToDoDTO dto2 = todo2.toDTO();
+    const ToDo todo1 = ToDo::FromDTO(todo1_dto);
+    const ToDo todo2 = ToDo::FromDTO(todo2_dto);
+    const ToDoDTO dto1 = todo1.ToDTO();
+    const ToDoDTO dto2 = todo2.ToDTO();
 
     EXPECT_EQ(dto1.name, "Test Task 1");
     EXPECT_EQ(dto1.description, "Test Task 1 Description");

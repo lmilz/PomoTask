@@ -28,9 +28,9 @@ TEST(PomodoroTests, PomodoroTimer_Constructor)
 {
     Pomodoro* pom = new Pomodoro(1);
     for (int i = 0; i < 59; ++i) {
-        EXPECT_TRUE(pom->start());
+        EXPECT_TRUE(pom->Start());
     }
-    EXPECT_FALSE(pom->start());
+    EXPECT_FALSE(pom->Start());
 
     delete pom;
 }
@@ -38,11 +38,11 @@ TEST(PomodoroTests, PomodoroTimer_Constructor)
 TEST(PomodoroTests, PomodoroTimer_Setter)
 {
     Pomodoro* pom = new Pomodoro(0);
-    pom->setFocusTime(2);
+    pom->SetFocusTime(2);
     for (int i = 0; i < 119; ++i) {
-        EXPECT_TRUE(pom->start());
+        EXPECT_TRUE(pom->Start());
     }
-    EXPECT_FALSE(pom->start());
+    EXPECT_FALSE(pom->Start());
 
     delete pom;
 }

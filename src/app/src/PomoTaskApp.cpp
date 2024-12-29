@@ -20,7 +20,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+// Includes 
+#include <sys/ioctl.h>
+#include <unistd.h>
+#include <iostream>
+#include <thread>
+#include <iomanip>
+#include <map>
+#include <ctime>
+
 #include "PomoTaskApp.h"
+#include "MatrixEffect.h"
+#include "RainEffect.h"
+#include "ToDo.h"
 
 PomoTaskApp::PomoTaskApp(int argc, char* argv[]) : running_app(true)
 {
@@ -45,14 +57,14 @@ PomoTaskApp::~PomoTaskApp()
     delete pomodoro_timer;
 }
 
-void PomoTaskApp::execute()
+void PomoTaskApp::Execute()
 {
     if (command == "--help") {
-        printHelp();
+        PrintHelp();
     }
     else if (command == "--pomodoro") {
-        initPomodoroTimer();
-        initEffect();
+        InitPomodoroTimer();
+        InitEffect();
 
         std::thread timerThread(&PomoTaskApp::RunPomodoroTimer, this);
         std::thread effectThread(&PomoTaskApp::RunEffect, this);
@@ -65,11 +77,11 @@ void PomoTaskApp::execute()
                        .description = argument_list[1],
                        .status = "Backlog",
                        .due_date = argument_list[2]};
-        todo_list->addItem(ToDo::fromDTO(dto));
+        todo_list->AddItem(ToDo::FromDTO(dto));
     }
     else if (command == "--show") {
-        for (const auto item : todo_list->showList()) {
-            auto dto = item.toDTO();
+        for (const auto& item : todo_list->ShowList()) {
+            auto dto = item.ToDTO();
             std::cout << "- " << dto.name << ": " << dto.description
                       << " with status: " << dto.status << " and due date: " << dto.due_date
                       << std::endl;
@@ -81,17 +93,17 @@ void PomoTaskApp::execute()
     }
 }
 
-std::pair<int, int> PomoTaskApp::getTerminalSize()
+std::pair<int, int> PomoTaskApp::GetTerminalSize()
 {
     struct winsize w;
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
     return {w.ws_row, w.ws_col};
 }
 
-void PomoTaskApp::printHelp()
+void PomoTaskApp::PrintHelp()
 {
     // Liste der Befehle und Beschreibungen
-    std::map<std::string, std::string> commands
+    const std::map<std::string, std::string> commands
         = {{"--help                          ", "Zeigt diese Hilfeseite an."},
            {"--pomodoro <focus time> <effect>",
             "Pomodoro Timer mit der Fokuszeit und den CLI Effekt."},
@@ -105,9 +117,9 @@ void PomoTaskApp::printHelp()
     }
 }
 
-void PomoTaskApp::initEffect()
+void PomoTaskApp::InitEffect()
 {
-    auto [rows, cols] = getTerminalSize();
+    auto [rows, cols] = GetTerminalSize();
     if (argument_list[1] == "Matrix") {
         effect = std::make_unique<MatrixEffect>(rows + 2, cols);
     }
@@ -119,20 +131,20 @@ void PomoTaskApp::initEffect()
     }
 }
 
-void PomoTaskApp::initPomodoroTimer()
+void PomoTaskApp::InitPomodoroTimer()
 {
     if (std::stoi(argument_list[0]) <= 0) {
         std::cerr << "Bitte eine gültige Fokuszeit eingeben." << std::endl;
         return;
     }
 
-    pomodoro_timer->setFocusTime(std::stoi(argument_list[0]));
+    pomodoro_timer->SetFocusTime(std::stoi(argument_list[0]));
 }
 
 void PomoTaskApp::RunEffect()
 {
     while (running_app) {
-        effect->run();
+        effect->Run();
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
@@ -140,7 +152,7 @@ void PomoTaskApp::RunEffect()
 void PomoTaskApp::RunPomodoroTimer()
 {
     while (running_app) {
-        if (!pomodoro_timer->start()) {
+        if (!pomodoro_timer->Start()) {
             running_app = false;
             break;
         }

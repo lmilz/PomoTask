@@ -26,7 +26,7 @@ Schema::Schema(sqlite3* database) : db(database)
 {
 }
 
-int Schema::getCurrentVersion()
+int Schema::GetCurrentVersion()
 {
     const char* sql = "PRAGMA user_version;";
     sqlite3_stmt* statement;
@@ -44,7 +44,7 @@ int Schema::getCurrentVersion()
     return version;
 }
 
-void Schema::setVersion(int version)
+void Schema::SetVersion(int version)
 {
     std::string sql = "PRAGMA user_version = " + std::to_string(version) + ";";
     if (sqlite3_exec(db, sql.c_str(), nullptr, nullptr, nullptr) != SQLITE_OK) {
@@ -52,9 +52,9 @@ void Schema::setVersion(int version)
     }
 }
 
-void Schema::migrate()
+void Schema::Migrate()
 {
-    int currentVersion = getCurrentVersion();
+    int currentVersion = GetCurrentVersion();
 
     if (currentVersion < 1) {
         const char* sql = R"(
@@ -68,6 +68,6 @@ void Schema::migrate()
         if (sqlite3_exec(db, sql, nullptr, nullptr, nullptr) != SQLITE_OK) {
             throw std::runtime_error("Migration to version 1 failed");
         }
-        setVersion(1);
+        SetVersion(1);
     }
 }

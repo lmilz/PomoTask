@@ -20,6 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+//Includes
+#include <vector>
+
+#include "Database.h"
+#include "ToDo.h"
 #include "ToDoList.h"
 
 ToDoList::ToDoList()
@@ -32,9 +37,9 @@ ToDoList::~ToDoList()
     delete todo_list;
 }
 
-void ToDoList::addItem(const ToDo& todo)
+void ToDoList::AddItem(const ToDo& todo)
 {
-    todo_list->save(todo.toDTO());
+    todo_list->Save(todo.ToDTO());
 }
 
 /*void ToDoList::removeItem(const ToDo& todo)
@@ -49,13 +54,14 @@ void ToDoList::addItem(const ToDo& todo)
     }
 }*/
 
-std::vector<ToDo> ToDoList::showList() const
+std::vector<ToDo> ToDoList::ShowList() const
 {
     std::vector<ToDo> temp_list;
-    auto list = todo_list->fetchAll();
+    auto list = todo_list->FetchAll();
 
-    for (auto item : list) {
-        temp_list.push_back(ToDo::fromDTO(item));
+    temp_list.reserve(list.size());
+    for (const auto& item : list) {
+        temp_list.push_back(ToDo::FromDTO(item));
     }
 
     return temp_list;

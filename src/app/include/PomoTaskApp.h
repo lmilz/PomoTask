@@ -20,26 +20,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _POMOTASKAPP_H
-#define _POMOTASKAPP_H
+#ifndef POMOTASK_APP_H
+#define POMOTASK_APP_H
 
 // Includes
-#include <sys/ioctl.h>
-#include <unistd.h>
 
 #include <atomic>
-#include <ctime>
-#include <iomanip>
-#include <iostream>
-#include <map>
 #include <string>
-#include <thread>
 
 #include "Effect.h"
-#include "MatrixEffect.h"
 #include "Pomodoro.h"
-#include "RainEffect.h"
-#include "ToDo.h"
 #include "ToDoList.h"
 
 class PomoTaskApp
@@ -47,7 +37,7 @@ class PomoTaskApp
    public:
     PomoTaskApp(int argc, char* argv[]);
     virtual ~PomoTaskApp();
-    void execute();
+    void Execute();
 
    private:
     ToDoList* todo_list;
@@ -57,16 +47,16 @@ class PomoTaskApp
     std::vector<std::string> argument_list;
     std::atomic<bool> running_app;
 
-    std::pair<int, int> getTerminalSize();
-    void printHelp();
-    void initCommand(int argc, char* argv[]);
-    void initEffect();
-    void initPomodoroTimer();
+    std::pair<int, int> GetTerminalSize();
+    void PrintHelp();
+    void InitCommand(int argc, char* argv[]);
+    void InitEffect();
+    void InitPomodoroTimer();
     void RunPomodoroTimer();
     void RunEffect();
-    void addTodo(std::string& todo);
-    void removeToDo(std::string& todo);
-    void showToDo();
+    void AddTodo(std::string& todo);
+    void RemoveToDo(std::string& todo);
+    void ShowToDo();
 };
 
-#endif /* _POMOTASKAPP_H */
+#endif /* POMOTASK_APP_H */

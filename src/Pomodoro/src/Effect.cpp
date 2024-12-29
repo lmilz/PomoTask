@@ -29,50 +29,50 @@
 Effect::Effect(int rows, int cols, int color) : rows(rows), cols(cols), color(color)
 {
     srand(time(0));  // Initialize random number generator
-    clearScreen();
+    ClearScreen();
 }
 
-void Effect::setCursorPosition(int row, int col)
+void Effect::SetCursorPosition(int row, int col)
 {
     std::cout << "\033[" << row << ";" << col << "H";
 }
 
-void Effect::setTextColor()
+void Effect::SetTextColor()
 {
     std::cout << "\033[1;" << color << "m";
 }
 
-void Effect::clearScreen()
+void Effect::ClearScreen()
 {
     std::cout << "\033[2J\033[H";
 }
 
-void Effect::setRows(const int new_rows)
+void Effect::SetRows(const int new_rows)
 {
     rows = new_rows;
 }
 
-int Effect::getRows() const
+int Effect::GetRows() const
 {
     return rows;
 }
 
-void Effect::setCols(const int new_cols)
+void Effect::SetCols(const int new_cols)
 {
     cols = new_cols;
 }
 
-int Effect::getCols() const
+int Effect::GetCols() const
 {
     return cols;
 }
 
-void Effect::setColor(const int new_color)
+void Effect::SetColor(const int new_color)
 {
     color = new_color;
 }
 
-int Effect::getColor() const
+int Effect::GetColor() const
 {
     return color;
 }

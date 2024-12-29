@@ -29,45 +29,45 @@ class MockEffect : public Effect
 {
    public:
     MockEffect(int rows, int cols, int color) : Effect(rows, cols, color) {}
-    void run() override {}
+    void Run() override {}
 
     // Expose protected methods for testing
-    void testSetCursorPosition(int row, int col) { setCursorPosition(row, col); }
+    void TestSetCursorPosition(int row, int col) { SetCursorPosition(row, col); }
 
-    void testSetTextColor() { setTextColor(); }
+    void TestSetTextColor() { SetTextColor(); }
 
-    void testClearScreen() { clearScreen(); }
+    void TestClearScreen() { ClearScreen(); }
 };
 
 TEST(EffectTests, ConstructorInitializesValues)
 {
     MockEffect* effect = new MockEffect(10, 20, 30);
-    EXPECT_EQ(10, effect->getRows());
-    EXPECT_EQ(20, effect->getCols());
-    EXPECT_EQ(30, effect->getColor());
+    EXPECT_EQ(10, effect->GetRows());
+    EXPECT_EQ(20, effect->GetCols());
+    EXPECT_EQ(30, effect->GetColor());
     delete effect;
 }
 
 TEST(EffectTests, Setter_Getter_Rows)
 {
     MockEffect* effect = new MockEffect(10, 20, 30);
-    effect->setRows(40);
-    EXPECT_EQ(40, effect->getRows());
+    effect->SetRows(40);
+    EXPECT_EQ(40, effect->GetRows());
     delete effect;
 }
 
 TEST(EffectTests, Setter_Getter_Cols)
 {
     MockEffect* effect = new MockEffect(10, 20, 30);
-    effect->setCols(50);
-    EXPECT_EQ(50, effect->getCols());
+    effect->SetCols(50);
+    EXPECT_EQ(50, effect->GetCols());
     delete effect;
 }
 
 TEST(EffectTests, Setter_Getter_Color)
 {
     MockEffect* effect = new MockEffect(10, 20, 30);
-    effect->setColor(60);
-    EXPECT_EQ(60, effect->getColor());
+    effect->SetColor(60);
+    EXPECT_EQ(60, effect->GetColor());
     delete effect;
 }

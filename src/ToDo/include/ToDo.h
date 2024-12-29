@@ -20,18 +20,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _TODO_H
-#define _TODO_H
+#ifndef POMOTASK_TODO_H
+#define POMOTASK_TODO_H
 
 // Includes
 #include <string>
 
-typedef struct {
+struct ToDoDTO {
     std::string name;
     std::string description;
     std::string status;
     std::string due_date;
-} ToDoDTO;
+};
 
 class ToDo
 {
@@ -41,12 +41,12 @@ class ToDo
          const std::string& status,
          const std::string& due_date);
 
-    static ToDo fromDTO(const ToDoDTO& dto)
+    static ToDo FromDTO(const ToDoDTO& dto)
     {
-        return ToDo(dto.name, dto.description, dto.status, dto.due_date);
+        return {dto.name, dto.description, dto.status, dto.due_date};
     }
 
-    ToDoDTO toDTO() const;
+    ToDoDTO ToDTO() const;
 
    private:
     std::string name;
@@ -55,4 +55,4 @@ class ToDo
     std::string due_date;
 };
 
-#endif /* _TODO_H */
+#endif /* POMOTASK_TODO_H */

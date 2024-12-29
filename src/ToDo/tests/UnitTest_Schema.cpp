@@ -31,7 +31,7 @@ TEST(SchemaTest, MigrationSetsCorrectVersion)
     sqlite3_open(":memory:", &db);
 
     Schema schema(db);
-    ASSERT_NO_THROW(schema.migrate());
+    ASSERT_NO_THROW(schema.Migrate());
 
     const char* sql = "PRAGMA user_version;";
     sqlite3_stmt* stmt;

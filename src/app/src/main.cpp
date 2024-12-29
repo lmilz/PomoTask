@@ -20,6 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+// Includes
+#include <iostream>
+
 #include "PomoTaskApp.h"
 
 int main(int argc, char* argv[])
@@ -31,7 +34,7 @@ int main(int argc, char* argv[])
 
     PomoTaskApp* app = new PomoTaskApp(argc, argv);
 
-    app->execute();
+    app->Execute();
 
     delete app;
     return 0;

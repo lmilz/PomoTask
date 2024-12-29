@@ -20,8 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _POMODORO_H
-#define _POMODORO_H
+#ifndef POMOTASK_POMODORO_H
+#define POMOTASK_POMODORO_H
 
 // Includes
 #include <chrono>
@@ -33,11 +33,11 @@ class Pomodoro
    public:
     Pomodoro(int focusk);
 
-    bool start();
-    void setFocusTime(const int new_focustime);
+    bool Start();
+    void SetFocusTime(int new_focustime);
 
    private:
     int focustime;
 };
 
-#endif /* _POMODORO_H */
+#endif /* POMOTASK_POMODORO_H */
