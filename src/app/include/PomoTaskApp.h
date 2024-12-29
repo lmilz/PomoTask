@@ -39,8 +39,8 @@
 #include "MatrixEffect.h"
 #include "Pomodoro.h"
 #include "RainEffect.h"
-#include "ToDoList.h"
 #include "ToDo.h"
+#include "ToDoList.h"
 
 class PomoTaskApp
 {

@@ -57,8 +57,14 @@ TEST(ToDoListTest, AddToDos)
 TEST(ToDoListTest, ConvertToDoIntoToDoDTO)
 {
     // Data transfer objects
-    ToDoDTO todo1_dto = { .name = "Test Task 1", .description = "Test Task 1 Description", .status = "Todo", .due_date = "1.1.2025"};
-    ToDoDTO todo2_dto = { .name = "Test Task 2", .description = "Test Task 2 Description", .status = "Done", .due_date = "31.1.2025"};
+    ToDoDTO todo1_dto = {.name = "Test Task 1",
+                         .description = "Test Task 1 Description",
+                         .status = "Todo",
+                         .due_date = "1.1.2025"};
+    ToDoDTO todo2_dto = {.name = "Test Task 2",
+                         .description = "Test Task 2 Description",
+                         .status = "Done",
+                         .due_date = "31.1.2025"};
 
     ToDo todo1 = ToDo::fromDTO(todo1_dto);
     ToDo todo2 = ToDo::fromDTO(todo2_dto);

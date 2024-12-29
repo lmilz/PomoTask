@@ -53,7 +53,7 @@ std::vector<ToDo> ToDoList::showList() const
 {
     std::vector<ToDo> temp_list;
     auto list = todo_list->fetchAll();
-    
+
     for (auto item : list) {
         temp_list.push_back(ToDo::fromDTO(item));
     }

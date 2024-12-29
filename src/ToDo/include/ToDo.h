@@ -26,7 +26,6 @@
 // Includes
 #include <string>
 
-
 typedef struct {
     std::string name;
     std::string description;
@@ -34,17 +33,22 @@ typedef struct {
     std::string due_date;
 } ToDoDTO;
 
-class ToDo {
-    public:
-    ToDo(const std::string& name, const std::string& description, const std::string& status, const std::string& due_date);
+class ToDo
+{
+   public:
+    ToDo(const std::string& name,
+         const std::string& description,
+         const std::string& status,
+         const std::string& due_date);
 
-    static ToDo fromDTO(const ToDoDTO& dto) {
+    static ToDo fromDTO(const ToDoDTO& dto)
+    {
         return ToDo(dto.name, dto.description, dto.status, dto.due_date);
     }
 
     ToDoDTO toDTO() const;
-    
-    private:
+
+   private:
     std::string name;
     std::string description;
     std::string status;

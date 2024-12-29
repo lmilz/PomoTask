@@ -56,10 +56,11 @@ void Database::save(const ToDoDTO& dto)
         throw std::runtime_error("Failed to execute save statement");
     }
 
-    sqlite3_finalize(statement);    
+    sqlite3_finalize(statement);
 }
 
-std::vector<ToDoDTO> Database::fetchAll() {
+std::vector<ToDoDTO> Database::fetchAll()
+{
     std::vector<ToDoDTO> results;
     const char* sql = "SELECT name, description, status, due_date FROM data;";
     sqlite3_stmt* statement;

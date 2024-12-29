@@ -38,7 +38,7 @@ class ToDoList
     virtual ~ToDoList();
 
     void addItem(const ToDo& todo);
-    //void removeItem(const ToDo& todo);
+    // void removeItem(const ToDo& todo);
     std::vector<ToDo> showList() const;
 
    private:

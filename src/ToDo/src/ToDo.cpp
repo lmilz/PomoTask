@@ -22,15 +22,23 @@
 
 #include "ToDo.h"
 
-ToDo::ToDo(const std::string& name, const std::string& description, const std::string& status, const std::string& due_date) {
+ToDo::ToDo(const std::string& name,
+           const std::string& description,
+           const std::string& status,
+           const std::string& due_date)
+{
     this->name = name;
     this->description = description;
     this->status = status;
     this->due_date = due_date;
 }
 
-ToDoDTO ToDo::toDTO() const {
-    ToDoDTO dto = { .name = this->name, .description = this->description, .status = this->status, .due_date = this->due_date };
+ToDoDTO ToDo::toDTO() const
+{
+    ToDoDTO dto = {.name = this->name,
+                   .description = this->description,
+                   .status = this->status,
+                   .due_date = this->due_date};
 
     return dto;
 }

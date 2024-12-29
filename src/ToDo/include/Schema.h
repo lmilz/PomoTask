@@ -24,9 +24,10 @@
 #define _SCHEMA_H
 
 // Includes
+#include <sqlite3.h>
+
 #include <stdexcept>
 #include <string>
-#include <sqlite3.h>
 
 class Schema
 {
