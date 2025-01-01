@@ -22,11 +22,12 @@
 
 #include <gtest/gtest.h>
 
-#include <filesystem>
+#include <memory>
 #include <stdexcept>
 
 #include "Database.h"
 #include "SQLUtil.h"
+#include "ToDo.h"
 
 TEST(DatabaseTest, SQLStatement)
 {
@@ -48,13 +49,13 @@ TEST(DatabaseTest, OpenDatabase)
 
 TEST(DatabaseTest, InvalidPathDatabase)
 {
-    EXPECT_THROW(Database* db = new Database("invalid_path/non_existent.db"),
+    EXPECT_THROW(const std::unique_ptr<Database> db = std::make_unique<Database>("invalid_path/non_existent.db"),
                  std::runtime_error);  // invald path and non existing database
 }
 
 TEST(DatabaseTest, SaveAndFetchData)
 {
-    ToDoDTO dto = {.name = "Test Task",
+    const ToDoDTO dto = {.name = "Test Task",
                    .description = "Description",
                    .status = "Open",
                    .due_date = "1.1.2025"};
