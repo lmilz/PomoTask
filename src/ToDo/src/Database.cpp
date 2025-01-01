@@ -49,7 +49,7 @@ Database::~Database()
 
 void Database::Save(const ToDoDTO& dto)
 {
-    std::string sql = SQLUtil::GetInsertOrReplaceStatement();
+    const std::string sql = SQLUtil::GetInsertOrReplaceStatement();
     sqlite3_stmt* statement;
 
     if (sqlite3_prepare_v2(database, sql.c_str(), -1, &statement, nullptr) != SQLITE_OK) {
