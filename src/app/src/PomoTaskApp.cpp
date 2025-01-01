@@ -40,12 +40,13 @@ PomoTaskApp::PomoTaskApp(int argc, char* argv[]) : running_app(true)
     pomodoro_timer = new Pomodoro(0);
 
     // interprete command
-    if (argc > 1)
+    if (argc > 1) {
         command = argv[1];
 
-    // save arguments for command
-    for (int index = 2; index < argc; ++index) {
-        argument_list.emplace_back(argv[index]);
+        // save arguments for command
+        for (int index = 2; index < argc; ++index) {
+            argument_list.emplace_back(argv[index]);
+        }
     }
 }
 
@@ -84,7 +85,7 @@ void PomoTaskApp::Execute()
             auto dto = item.ToDTO();
             std::cout << "- " << dto.name << ": " << dto.description
                       << " with status: " << dto.status << " and due date: " << dto.due_date
-                      << std::endl;
+                      << "\n";
         }
     }
     else {
@@ -134,7 +135,7 @@ void PomoTaskApp::InitEffect()
 void PomoTaskApp::InitPomodoroTimer()
 {
     if (std::stoi(argument_list[0]) <= 0) {
-        std::cerr << "Bitte eine gültige Fokuszeit eingeben." << std::endl;
+        std::cerr << "Bitte eine gültige Fokuszeit eingeben." << "\n";
         return;
     }
 

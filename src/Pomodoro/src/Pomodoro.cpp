@@ -34,7 +34,7 @@ bool Pomodoro::Start()
     --focustime;
 
     if (focustime == 0) {
-        std::cout << std::endl << "Pomodoro beendet! Zeit für eine Pause!" << std::endl;
+        std::cout << "\n" << "Pomodoro beendet! Zeit für eine Pause!" << "\n";
         return false;
     }
 
