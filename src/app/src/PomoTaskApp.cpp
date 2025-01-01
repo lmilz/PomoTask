@@ -23,29 +23,34 @@
 // Includes 
 #include <sys/ioctl.h>
 #include <unistd.h>
+#include <chrono>
 #include <iostream>
 #include <thread>
-#include <iomanip>
 #include <map>
+#include <memory>
 #include <ctime>
+#include <string>
+#include <span>
+#include <utility> 
 
 #include "PomoTaskApp.h"
+#include "Pomodoro.h"
 #include "MatrixEffect.h"
 #include "RainEffect.h"
 #include "ToDo.h"
+#include "ToDoList.h"
 
-PomoTaskApp::PomoTaskApp(int argc, char* argv[]) : running_app(true)
+PomoTaskApp::PomoTaskApp(std::span<char*> args) : running_app(true)
 {
     todo_list = new ToDoList();
     pomodoro_timer = new Pomodoro(0);
 
     // interprete command
-    if (argc > 1) {
-        command = argv[1];
+    if (args.size() > 1) {
+        command = args[1];  
 
-        // save arguments for command
-        for (int index = 2; index < argc; ++index) {
-            argument_list.emplace_back(argv[index]);
+        for (size_t index = 2; index < args.size(); ++index) {
+            argument_list.emplace_back(args[index]);
         }
     }
 }
@@ -74,7 +79,7 @@ void PomoTaskApp::Execute()
         effect_thread.join();
     }
     else if (command == "--add") {
-        ToDoDTO dto = {.name = argument_list[0],
+        const ToDoDTO dto = {.name = argument_list[0],
                        .description = argument_list[1],
                        .status = "Backlog",
                        .due_date = argument_list[2]};

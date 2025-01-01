@@ -27,6 +27,7 @@
 
 #include <atomic>
 #include <string>
+#include <span>
 
 #include "Effect.h"
 #include "Pomodoro.h"
@@ -35,7 +36,7 @@
 class PomoTaskApp
 {
    public:
-    PomoTaskApp(int argc, char* argv[]);
+    PomoTaskApp(std::span<char*> args);
     virtual ~PomoTaskApp();
     void Execute();
 
@@ -49,7 +50,6 @@ class PomoTaskApp
 
     std::pair<int, int> GetTerminalSize();
     void PrintHelp();
-    void InitCommand(int argc, char* argv[]);
     void InitEffect();
     void InitPomodoroTimer();
     void RunPomodoroTimer();

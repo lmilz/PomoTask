@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 // Includes
+#include <span>
 #include <iostream>
 
 #include "PomoTaskApp.h"
@@ -32,7 +33,8 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    PomoTaskApp* app = new PomoTaskApp(argc, argv);
+    const std::span<char*> args(argv, argc);
+    PomoTaskApp* app = new PomoTaskApp(args);
 
     app->Execute();
 
