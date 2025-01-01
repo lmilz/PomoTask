@@ -44,7 +44,7 @@ void MatrixEffect::Run()
             *iter = ' ';
         }
         // Move cursor to a random position in the current column
-        SetCursorPosition(rand() % rows + 1, i + 1);
+        SetCursorPosition(rand() % GetRows() + 1, i + 1);
         std::cout << *iter;
     }
     std::cout.flush();

@@ -39,13 +39,14 @@ class Effect
     int GetColor() const;
 
    protected:
-    int rows;
-    int cols;
-    int color;
-
     void SetCursorPosition(int row, int col);
     void SetTextColor();
     void ClearScreen();
+
+    private:
+    int rows;
+    int cols;
+    int color;
 };
 
 #endif /* POMOTASK_EFFECT_H */

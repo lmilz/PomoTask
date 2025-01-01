@@ -37,7 +37,7 @@ void RainEffect::Run()
     SetTextColor();
 
     if (rand() % 10 < 3) {
-        raindrops.push_back({rand() % cols, 0});  // New raindrop at random column
+        raindrops.push_back({rand() % GetCols(), 0});  // New raindrop at random column
     }
 
     // Move existing raindrops down and erase their previous positions
@@ -49,7 +49,7 @@ void RainEffect::Run()
 
     // Redraw raindrops in their new positions
     for (const auto& drop : raindrops) {
-        if (drop.y < rows) {
+        if (drop.y < GetRows()) {
             SetCursorPosition(drop.y, drop.x);
             std::cout << "|";
         }
@@ -61,13 +61,13 @@ void RainEffect::Run()
     // Remove raindrops that have reached the bottom of the screen
     raindrops.erase(std::remove_if(raindrops.begin(),
                                    raindrops.end(),
-                                   [this](const Raindrop& drop) { return drop.y >= rows; }),
+                                   [this](const Raindrop& drop) { return drop.y >= GetRows(); }),
                     raindrops.end());
 
     // Draw water film
-    for (int i = 0; i < cols; ++i) {
+    for (int i = 0; i < GetCols(); ++i) {
         if (waterfilm[i] != ' ') {
-            SetCursorPosition(rows, i + 1);
+            SetCursorPosition(GetRows(), i + 1);
             std::cout << waterfilm[i];
         }
     }
