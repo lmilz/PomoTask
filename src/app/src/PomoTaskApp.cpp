@@ -66,11 +66,11 @@ void PomoTaskApp::Execute()
         InitPomodoroTimer();
         InitEffect();
 
-        std::thread timerThread(&PomoTaskApp::RunPomodoroTimer, this);
-        std::thread effectThread(&PomoTaskApp::RunEffect, this);
+        std::thread timer_thread(&PomoTaskApp::RunPomodoroTimer, this);
+        std::thread effect_thread(&PomoTaskApp::RunEffect, this);
 
-        timerThread.join();
-        effectThread.join();
+        timer_thread.join();
+        effect_thread.join();
     }
     else if (command == "--add") {
         ToDoDTO dto = {.name = argument_list[0],
