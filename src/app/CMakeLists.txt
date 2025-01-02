@@ -1,13 +1,22 @@
-add_library(app
+add_library(App
     src/PomoTaskApp.cpp
 )
 
-target_include_directories(app PUBLIC include)
-target_link_libraries(app PRIVATE ToDo Pomodoro)
+target_include_directories(App PUBLIC include)
+target_link_libraries(App PRIVATE ToDo Pomodoro)
 
-add_executable(main src/main.cpp)
+add_executable(PomoTask src/main.cpp)
 
-target_include_directories(main PUBLIC ../Pomodoro/include)
-target_include_directories(main PUBLIC ../ToDo/include)
+target_include_directories(PomoTask PUBLIC ../Pomodoro/include)
+target_include_directories(PomoTask PUBLIC ../ToDo/include)
 
-target_link_libraries(main PRIVATE app)
+target_link_libraries(PomoTask PRIVATE App)
+
+# google test
+add_executable(test_app
+)
+
+target_link_libraries(test_app PRIVATE App GTest::GTest GTest::Main)
+
+enable_testing()
+add_test(NAME AppTests COMMAND test_app)
