@@ -28,7 +28,6 @@
 
 Effect::Effect(int rows, int cols, int color) : rows(rows), cols(cols), color(color)
 {
-    srand(time(0));  // Initialize random number generator
     ClearScreen();
 }
 

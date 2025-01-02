@@ -24,6 +24,7 @@
 #define POMOTASK_RAINEFFECT_H
 
 // Includes
+#include <random>
 #include <vector>
 
 #include "Effect.h"
@@ -43,6 +44,9 @@ class RainEffect : public Effect
 
     std::vector<Raindrop> raindrops;
     std::vector<char> waterfilm;
+    std::mt19937 gen; 
+    std::uniform_int_distribution<int> dist_chance; 
+    std::uniform_int_distribution<int> dist_cols;
 };
 
 #endif /* POMOTASK_RAINEFFECT_H */

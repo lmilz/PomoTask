@@ -28,49 +28,50 @@
 #include "RainEffect.h"
 
 RainEffect::RainEffect(int rows, int cols, int color)
-    : Effect(rows, cols, color), waterfilm(cols, ' ')
+    : Effect(rows, cols, color), waterfilm(cols, ' '), gen(std::random_device{}()), dist_chance(0, 9), dist_cols(0, cols - 1)
 {
 }
 
 void RainEffect::Run()
 {
-    SetTextColor();
+        SetTextColor();
 
-    if (rand() % 10 < 3) {
-        raindrops.push_back({rand() % GetCols(), 0});  // New raindrop at random column
-    }
-
-    // Move existing raindrops down and erase their previous positions
-    for (auto& drop : raindrops) {
-        SetCursorPosition(drop.y, drop.x);
-        std::cout << " ";
-        drop.y++;
-    }
-
-    // Redraw raindrops in their new positions
-    for (const auto& drop : raindrops) {
-        if (drop.y < GetRows()) {
-            SetCursorPosition(drop.y, drop.x);
-            std::cout << "|";
+        // 30% Wahrscheinlichkeit, einen neuen Regentropfen hinzuzufügen
+        if (dist_chance(gen) < 3) {
+            raindrops.push_back({dist_cols(gen), 0}); // Neuer Tropfen in zufälliger Spalte
         }
-        else {
-            waterfilm[drop.x] = '.';
+
+        // Verschiebe bestehende Regentropfen nach unten und lösche ihre alten Positionen
+        for (auto& drop : raindrops) {
+            SetCursorPosition(drop.y, drop.x + 1);
+            std::cout << " "; // Löschen der alten Position
+            drop.y++;
         }
-    }
 
-    // Remove raindrops that have reached the bottom of the screen
-    raindrops.erase(std::remove_if(raindrops.begin(),
-                                   raindrops.end(),
-                                   [this](const Raindrop& drop) { return drop.y >= GetRows(); }),
-                    raindrops.end());
-
-    // Draw water film
-    for (int i = 0; i < GetCols(); ++i) {
-        if (waterfilm[i] != ' ') {
-            SetCursorPosition(GetRows(), i + 1);
-            std::cout << waterfilm[i];
+        // Zeichne die Regentropfen an ihren neuen Positionen
+        for (const auto& drop : raindrops) {
+            if (drop.y < GetRows()) {
+                SetCursorPosition(drop.y, drop.x + 1);
+                std::cout << "|"; // Neuer Regentropfen
+            } else {
+                waterfilm[drop.x] = '.'; // Tropfen erreicht den Boden
+            }
         }
-    }
 
-    std::cout.flush();
+        // Entferne Regentropfen, die den Boden erreicht haben
+        raindrops.erase(
+            std::remove_if(raindrops.begin(),
+                           raindrops.end(),
+                           [this](const Raindrop& drop) { return drop.y >= GetRows(); }),
+            raindrops.end());
+
+        // Zeichne den Wasserfilm
+        for (int i = 0; i < GetCols(); ++i) {
+            if (waterfilm[i] != ' ') {
+                SetCursorPosition(GetRows(), i + 1);
+                std::cout << waterfilm[i];
+            }
+        }
+
+        std::cout.flush();
 }

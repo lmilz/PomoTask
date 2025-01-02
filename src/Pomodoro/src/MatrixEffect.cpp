@@ -28,28 +28,27 @@
 #include "MatrixEffect.h"
 
 MatrixEffect::MatrixEffect(int rows, int cols, int color)
-    : Effect(rows, cols, color), columns(cols, ' ')
+    : Effect(rows, cols, color), columns(cols, ' '), gen(std::random_device{}()), dist_char(33, 126), dist_chance(0, 9), dist_row(1, rows)
 {
 }
 
 void MatrixEffect::Run()
 {
-    SetTextColor();
-    int i = 0;
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist(33, 126);
-    for (auto iter = columns.begin(); iter != columns.end(); ++iter, ++i) {
-        if (rand() % 10 < 2) {
-            // Generate a random printable ASCII character
-            *iter = static_cast<char>(dist(gen));
+        SetTextColor();
+        int i = 0;
+
+        for (auto iter = columns.begin(); iter != columns.end(); ++iter, ++i) {
+            // 30% Chance, einen neuen Charakter zu generieren
+            if (dist_chance(gen) < 2) { 
+                // Generiere ein zufälliges druckbares ASCII-Zeichen
+                *iter = static_cast<char>(dist_char(gen));
+            } else {
+                *iter = ' ';
+            }
+            
+            // Bewege den Cursor zu einer zufälligen Position in der aktuellen Spalte
+            SetCursorPosition(dist_row(gen), i + 1);
+            std::cout << *iter;
         }
-        else {
-            *iter = ' ';
-        }
-        // Move cursor to a random position in the current column
-        SetCursorPosition(rand() % GetRows() + 1, i + 1);
-        std::cout << *iter;
-    }
-    std::cout.flush();
+        std::cout.flush();
 }
