@@ -29,6 +29,7 @@
 #include <span>
 #include <string>
 
+#include "CLICommand.h"
 #include "Effect.h"
 #include "Pomodoro.h"
 #include "ToDoList.h"
@@ -41,6 +42,7 @@ class PomoTaskApp
     void Execute();
 
    private:
+    CLICommand* cli;
     ToDoList* todo_list;
     Pomodoro* pomodoro_timer;
     std::unique_ptr<Effect> effect;
