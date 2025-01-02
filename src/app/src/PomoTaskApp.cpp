@@ -20,22 +20,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-// Includes 
+// Includes
+#include "PomoTaskApp.h"
+
 #include <sys/ioctl.h>
 #include <unistd.h>
+
 #include <chrono>
+#include <ctime>
 #include <iostream>
-#include <thread>
 #include <map>
 #include <memory>
-#include <ctime>
-#include <string>
 #include <span>
-#include <utility> 
+#include <string>
+#include <thread>
+#include <utility>
 
-#include "PomoTaskApp.h"
-#include "Pomodoro.h"
 #include "MatrixEffect.h"
+#include "Pomodoro.h"
 #include "RainEffect.h"
 #include "ToDo.h"
 #include "ToDoList.h"
@@ -47,7 +49,7 @@ PomoTaskApp::PomoTaskApp(std::span<char*> args) : running_app(true)
 
     // interprete command
     if (args.size() > 1) {
-        command = args[1];  
+        command = args[1];
 
         for (size_t index = 2; index < args.size(); ++index) {
             argument_list.emplace_back(args[index]);
@@ -80,9 +82,9 @@ void PomoTaskApp::Execute()
     }
     else if (command == "--add") {
         const ToDoDTO dto = {.name = argument_list[0],
-                       .description = argument_list[1],
-                       .status = "Backlog",
-                       .due_date = argument_list[2]};
+                             .description = argument_list[1],
+                             .status = "Backlog",
+                             .due_date = argument_list[2]};
         todo_list->AddItem(ToDo::FromDTO(dto));
     }
     else if (command == "--show") {

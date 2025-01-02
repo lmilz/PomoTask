@@ -20,12 +20,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-//Includes
+// Includes
+#include "ToDoList.h"
+
 #include <vector>
 
 #include "Database.h"
 #include "ToDo.h"
-#include "ToDoList.h"
 
 ToDoList::ToDoList()
 {

@@ -38,9 +38,9 @@ class MatrixEffect : public Effect
 
    private:
     std::vector<char> columns;
-    std::mt19937 gen; 
-    std::uniform_int_distribution<int> dist_char; 
-    std::uniform_int_distribution<int> dist_chance; 
+    std::mt19937 gen;
+    std::uniform_int_distribution<int> dist_char;
+    std::uniform_int_distribution<int> dist_chance;
     std::uniform_int_distribution<int> dist_row;
 };
 

@@ -21,9 +21,10 @@
 // SOFTWARE.
 
 // Includes
+#include "Schema.h"
+
 #include <stdexcept>
 #include <string>
-#include "Schema.h"
 
 Schema::Schema(sqlite3* database) : db(database)
 {

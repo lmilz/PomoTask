@@ -49,16 +49,17 @@ TEST(DatabaseTest, OpenDatabase)
 
 TEST(DatabaseTest, InvalidPathDatabase)
 {
-    EXPECT_THROW(const std::unique_ptr<Database> db = std::make_unique<Database>("invalid_path/non_existent.db"),
+    EXPECT_THROW(const std::unique_ptr<Database> db
+                 = std::make_unique<Database>("invalid_path/non_existent.db"),
                  std::runtime_error);  // invald path and non existing database
 }
 
 TEST(DatabaseTest, SaveAndFetchData)
 {
     const ToDoDTO dto = {.name = "Test Task",
-                   .description = "Description",
-                   .status = "Open",
-                   .due_date = "1.1.2025"};
+                         .description = "Description",
+                         .status = "Open",
+                         .due_date = "1.1.2025"};
     Database* db = new Database(":memory:");  // create data in memory
     ASSERT_NO_THROW(db->Save(dto));
 

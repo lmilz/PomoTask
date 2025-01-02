@@ -20,7 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-//Includes
+// Includes
+#include "Database.h"
+
 #include <sqlite3.h>
 
 #include <stdexcept>
@@ -30,7 +32,6 @@
 #include "SQLUtil.h"
 #include "Schema.h"
 #include "ToDo.h"
-#include "Database.h"
 
 Database::Database(const std::string& database_filename)
 {

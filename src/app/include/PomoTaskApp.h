@@ -26,8 +26,8 @@
 // Includes
 
 #include <atomic>
-#include <string>
 #include <span>
+#include <string>
 
 #include "Effect.h"
 #include "Pomodoro.h"

@@ -56,13 +56,13 @@ TEST(ToDoListTest, ConvertToDoIntoToDoDTO)
 {
     // Data transfer objects
     const ToDoDTO todo1_dto = {.name = "Test Task 1",
-                         .description = "Test Task 1 Description",
-                         .status = "Todo",
-                         .due_date = "1.1.2025"};
+                               .description = "Test Task 1 Description",
+                               .status = "Todo",
+                               .due_date = "1.1.2025"};
     const ToDoDTO todo2_dto = {.name = "Test Task 2",
-                         .description = "Test Task 2 Description",
-                         .status = "Done",
-                         .due_date = "31.1.2025"};
+                               .description = "Test Task 2 Description",
+                               .status = "Done",
+                               .due_date = "31.1.2025"};
 
     const ToDo todo1 = ToDo::FromDTO(todo1_dto);
     const ToDo todo2 = ToDo::FromDTO(todo2_dto);

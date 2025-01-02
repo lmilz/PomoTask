@@ -21,8 +21,9 @@
 // SOFTWARE.
 
 // Includes
-#include <iostream>
 #include "Pomodoro.h"
+
+#include <iostream>
 
 Pomodoro::Pomodoro(int focus) : focustime(focus * 60)
 {
@@ -36,7 +37,8 @@ bool Pomodoro::Start()
     --focustime;
 
     if (focustime == 0) {
-        std::cout << "\n" << "Pomodoro beendet! Zeit für eine Pause!" << "\n";
+        std::cout << "\n"
+                  << "Pomodoro beendet! Zeit für eine Pause!" << "\n";
         return false;
     }
 

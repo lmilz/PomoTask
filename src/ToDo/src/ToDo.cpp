@@ -21,9 +21,9 @@
 // SOFTWARE.
 
 // Includes
-#include <string>
-
 #include "ToDo.h"
+
+#include <string>
 
 ToDo::ToDo(const std::string& name,
            const std::string& description,

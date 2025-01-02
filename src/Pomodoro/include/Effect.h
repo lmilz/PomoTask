@@ -43,7 +43,7 @@ class Effect
     void SetTextColor();
     void ClearScreen();
 
-    private:
+   private:
     int rows;
     int cols;
     int color;

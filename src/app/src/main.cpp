@@ -21,8 +21,8 @@
 // SOFTWARE.
 
 // Includes
-#include <span>
 #include <iostream>
+#include <span>
 
 #include "PomoTaskApp.h"
 
