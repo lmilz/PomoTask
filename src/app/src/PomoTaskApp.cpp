@@ -21,8 +21,6 @@
 // SOFTWARE.
 
 // Includes
-#include "PomoTaskApp.h"
-
 #include <sys/ioctl.h>
 #include <unistd.h>
 
@@ -36,6 +34,7 @@
 #include <thread>
 #include <utility>
 
+#include "PomoTaskApp.h"
 #include "MatrixEffect.h"
 #include "Pomodoro.h"
 #include "RainEffect.h"
