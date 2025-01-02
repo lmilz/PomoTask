@@ -48,8 +48,8 @@ class PomoTaskApp
     std::vector<std::string> argument_list;
     std::atomic<bool> running_app;
 
-    std::pair<int, int> GetTerminalSize();
-    void PrintHelp();
+    static std::pair<int, int> GetTerminalSize();
+    static void PrintHelp();
     void InitEffect();
     void InitPomodoroTimer();
     void RunPomodoroTimer();

@@ -39,9 +39,9 @@ class Effect
     int GetColor() const;
 
    protected:
-    void SetCursorPosition(int row, int col);
-    void SetTextColor();
-    void ClearScreen();
+    static void SetCursorPosition(int row, int col);
+    void SetTextColor() const;
+    static void ClearScreen();
 
    private:
     int rows;

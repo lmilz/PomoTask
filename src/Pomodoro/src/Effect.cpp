@@ -22,7 +22,6 @@
 
 #include "Effect.h"
 
-#include <algorithm>
 #include <cstdlib>
 #include <iostream>
 
@@ -36,7 +35,7 @@ void Effect::SetCursorPosition(int row, int col)
     std::cout << "\033[" << row << ";" << col << "H";
 }
 
-void Effect::SetTextColor()
+void Effect::SetTextColor() const
 {
     std::cout << "\033[1;" << color << "m";
 }

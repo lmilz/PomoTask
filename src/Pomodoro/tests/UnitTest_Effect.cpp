@@ -32,11 +32,11 @@ class MockEffect : public Effect
     void Run() override {}
 
     // Expose protected methods for testing
-    void TestSetCursorPosition(int row, int col) { SetCursorPosition(row, col); }
+    static void TestSetCursorPosition(int row, int col) { SetCursorPosition(row, col); }
 
     void TestSetTextColor() { SetTextColor(); }
 
-    void TestClearScreen() { ClearScreen(); }
+    static void TestClearScreen() { ClearScreen(); }
 };
 
 TEST(EffectTests, ConstructorInitializesValues)
