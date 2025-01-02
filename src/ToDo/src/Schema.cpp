@@ -20,6 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+// Includes
+#include <stdexcept>
+#include <string>
 #include "Schema.h"
 
 Schema::Schema(sqlite3* database) : db(database)
@@ -46,7 +49,7 @@ int Schema::GetCurrentVersion()
 
 void Schema::SetVersion(int version)
 {
-    std::string sql = "PRAGMA user_version = " + std::to_string(version) + ";";
+    const std::string sql = "PRAGMA user_version = " + std::to_string(version) + ";";
     if (sqlite3_exec(db, sql.c_str(), nullptr, nullptr, nullptr) != SQLITE_OK) {
         throw std::runtime_error("Failed to set schema version");
     }
@@ -54,9 +57,9 @@ void Schema::SetVersion(int version)
 
 void Schema::Migrate()
 {
-    int currentVersion = GetCurrentVersion();
+    const int current_version = GetCurrentVersion();
 
-    if (currentVersion < 1) {
+    if (current_version < 1) {
         const char* sql = R"(
             CREATE TABLE data (
                 name TEXT PRIMARY KEY,

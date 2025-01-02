@@ -23,6 +23,7 @@
 // Includes
 #include <cstdlib>
 #include <iostream>
+#include <random>
 #include "Effect.h"
 #include "MatrixEffect.h"
 
@@ -35,10 +36,13 @@ void MatrixEffect::Run()
 {
     SetTextColor();
     int i = 0;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dist(33, 126);
     for (auto iter = columns.begin(); iter != columns.end(); ++iter, ++i) {
         if (rand() % 10 < 2) {
             // Generate a random printable ASCII character
-            *iter = rand() % 94 + 33;
+            *iter = static_cast<char>(dist(gen));
         }
         else {
             *iter = ' ';
