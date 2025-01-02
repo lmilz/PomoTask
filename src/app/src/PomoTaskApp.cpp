@@ -36,7 +36,6 @@
 #include <thread>
 #include <utility>
 
-#include "MatrixEffect.h"
 #include "Pomodoro.h"
 #include "RainEffect.h"
 #include "ToDo.h"
