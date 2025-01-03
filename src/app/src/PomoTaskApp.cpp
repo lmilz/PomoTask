@@ -59,15 +59,12 @@ PomoTaskApp::~PomoTaskApp()
 
 void PomoTaskApp::Execute()
 {
-    switch (cli->GetCommand())
-    {
-        case CommandType::POMOTASK_APP_HELP:
-        {
+    switch (cli->GetCommand()) {
+        case CommandType::POMOTASK_APP_HELP: {
             PrintHelp();
             break;
         }
-        case CommandType::POMOTASK_APP_POMODORO:
-        {
+        case CommandType::POMOTASK_APP_POMODORO: {
             InitPomodoroTimer();
             InitEffect();
 
@@ -78,32 +75,31 @@ void PomoTaskApp::Execute()
             effect_thread.join();
             break;
         }
-        case CommandType::POMOTASK_APP_ADD_TODO:
-        {
+        case CommandType::POMOTASK_APP_ADD_TODO: {
             const ToDoDTO dto = {.name = cli->GetArgumentList()[0],
-                                .description = cli->GetArgumentList()[1],
-                                .status = "Backlog",
-                                .due_date = cli->GetArgumentList()[2]};
+                                 .description = cli->GetArgumentList()[1],
+                                 .status = "Backlog",
+                                 .due_date = cli->GetArgumentList()[2]};
             todo_list->AddItem(ToDo::FromDTO(dto));
             break;
         }
-        case CommandType::POMOTASK_APP_SHOW_TODOLIST: 
-        {
+        case CommandType::POMOTASK_APP_SHOW_TODOLIST: {
             for (const auto& item : todo_list->ShowList()) {
                 auto dto = item.ToDTO();
                 std::cout << "- " << dto.name << ": " << dto.description
-                        << " with status: " << dto.status << " and due date: " << dto.due_date
-                        << "\n";
+                          << " with status: " << dto.status << " and due date: " << dto.due_date
+                          << "\n";
             }
             break;
         }
-        default:
-        {
+        case CommandType::POMOTASK_APP_UPDATE_TODO: {
+            break;
+        }
+        default: {
             std::cout << "Unbekannter Befehl: " << command << "\n";
             std::cout << "Verwenden Sie --help für eine Liste der Befehle.\n";
             break;
         }
-
     }
 }
 
