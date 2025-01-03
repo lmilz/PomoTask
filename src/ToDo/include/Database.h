@@ -38,6 +38,7 @@ class Database
     virtual ~Database();
 
     void Save(const ToDoDTO& dto);
+    void Update(const ToDoDTO& dto);
     std::vector<ToDoDTO> FetchAll();
 
    private:

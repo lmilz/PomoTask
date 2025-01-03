@@ -71,3 +71,33 @@ TEST(DatabaseTest, SaveAndFetchData)
     EXPECT_EQ(results[0].due_date, "1.1.2025");
     delete db;
 }
+
+TEST(DatabaseTest, UpdateData)
+{
+    ToDoDTO dto = {.name = "Test Task",
+                         .description = "Description",
+                         .status = "Open",
+                         .due_date = "1.1.2025"};
+    Database* db = new Database(":memory:");  // create data in memory
+    ASSERT_NO_THROW(db->Save(dto));
+
+    auto results = db->FetchAll();
+    ASSERT_EQ(results.size(), 1);
+    EXPECT_EQ(results[0].name, "Test Task");
+    EXPECT_EQ(results[0].description, "Description");
+    EXPECT_EQ(results[0].status, "Open");
+    EXPECT_EQ(results[0].due_date, "1.1.2025");
+
+    // update elements of dto
+    dto = { .name = "Test Task", .description = "New Description", .status = "WIP", .due_date = "31.01.2025" };
+    ASSERT_NO_THROW(db->Update(dto));
+
+    results = db->FetchAll();
+    ASSERT_EQ(results.size(), 1);
+    EXPECT_EQ(results[0].name, "Test Task");
+    EXPECT_EQ(results[0].description, "New Description");
+    EXPECT_EQ(results[0].status, "WIP");
+    EXPECT_EQ(results[0].due_date, "31.01.2025");
+
+    delete db;
+}

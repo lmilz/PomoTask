@@ -70,6 +70,32 @@ void Database::Save(const ToDoDTO& dto)
     sqlite3_finalize(statement);
 }
 
+void Database::Update(const ToDoDTO& dto)
+{
+    const char* sql = R"(
+        UPDATE data 
+        SET description = ?, status = ?, due_date = ? 
+        WHERE name = ?;
+    )";
+
+    sqlite3_stmt* statement;
+    if (sqlite3_prepare_v2(database, sql, -1, &statement, nullptr) != SQLITE_OK) {
+        throw std::runtime_error("Failed to prepare update statement");
+    }
+
+    sqlite3_bind_text(statement, 1, dto.description.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 2, dto.status.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 3, dto.due_date.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 4, dto.name.c_str(), -1, SQLITE_STATIC);
+
+    if (sqlite3_step(statement) != SQLITE_DONE) {
+        sqlite3_finalize(statement);
+        throw std::runtime_error("Failed to execute update statement");
+    }
+
+    sqlite3_finalize(statement);
+}
+
 std::vector<ToDoDTO> Database::FetchAll()
 {
     std::vector<ToDoDTO> results;
