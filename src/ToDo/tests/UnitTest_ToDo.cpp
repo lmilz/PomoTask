@@ -87,18 +87,18 @@ TEST(ToDoListTest, FetchToDoByName)
     const std::string todo_name = "Test Task 1";
     const ToDo todo("Test Task 1", "Test Task 1 Description", "Todo", "1.1.2025");
     test_obj->AddItem(todo);
-    
+
     // Act
     const ToDo fetch = test_obj->FetchToDoByName(todo_name);
     const ToDoDTO dto = fetch.ToDTO();
-    
+
     // Assert
     EXPECT_EQ(dto.name, "Test Task 1");
     EXPECT_EQ(dto.description, "Test Task 1 Description");
     EXPECT_EQ(dto.status, "Todo");
     EXPECT_EQ(dto.due_date, "1.1.2025");
 
-    delete test_obj;    
+    delete test_obj;
 }
 
 TEST(ToDoListTest, UpdateToDo)
@@ -111,10 +111,10 @@ TEST(ToDoListTest, UpdateToDo)
     ToDoDTO dto = todo.ToDTO();
     dto.due_date = "31.1.2025";
     todo = ToDo::FromDTO(dto);
-    
+
     // Act
     test_obj->UpdateToDo(todo);
-    
+
     // Assert
     const ToDo fetch = test_obj->FetchToDoByName(todo_name);
     const ToDoDTO dto_result = fetch.ToDTO();
@@ -123,7 +123,7 @@ TEST(ToDoListTest, UpdateToDo)
     EXPECT_EQ(dto_result.status, "Todo");
     EXPECT_EQ(dto_result.due_date, "31.1.2025");
 
-    delete test_obj;      
+    delete test_obj;
 }
 
 /*TEST(ToDoListTest, RemoveToDo)

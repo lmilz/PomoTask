@@ -72,10 +72,8 @@ ToDo ToDoList::FetchToDoByName(const std::string& todo_name)
 {
     auto list = todo_list->FetchAll();
 
-    for (const auto& item: list)
-    {
-        if (item.name == todo_name)
-        {
+    for (const auto& item : list) {
+        if (item.name == todo_name) {
             return ToDo::FromDTO(item);
             break;
         }
