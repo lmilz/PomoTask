@@ -80,6 +80,27 @@ TEST(ToDoListTest, ConvertToDoIntoToDoDTO)
     EXPECT_EQ(dto2.due_date, "31.1.2025");
 }
 
+TEST(ToDoListTest, FetchToDoByName)
+{
+    // Arrange
+    ToDoList* test_obj = new ToDoList();
+    std::string todo_name = "Test Task 1";
+    const ToDo todo("Test Task 1", "Test Task 1 Description", "Todo", "1.1.2025");
+    test_obj->AddItem(todo);
+    
+    // Act
+    const ToDo fetch = test_obj->FetchToDoByName(todo_name);
+    const ToDoDTO dto = fetch.ToDTO();
+    
+    // Assert
+    EXPECT_EQ(dto.name, "Test Task 1");
+    EXPECT_EQ(dto.description, "Test Task 1 Description");
+    EXPECT_EQ(dto.status, "Todo");
+    EXPECT_EQ(dto.due_date, "1.1.2025");
+
+    delete test_obj;    
+}
+
 /*TEST(ToDoListTest, RemoveToDo)
 {
     ToDoList* test_obj = new ToDoList();

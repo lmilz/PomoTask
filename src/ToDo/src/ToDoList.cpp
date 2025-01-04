@@ -67,3 +67,19 @@ std::vector<ToDo> ToDoList::ShowList() const
 
     return temp_list;
 }
+
+ToDo ToDoList::FetchToDoByName(const std::string& todo_name)
+{
+    auto list = todo_list->FetchAll();
+
+    for (const auto& item: list)
+    {
+        if (item.name == todo_name)
+        {
+            return ToDo::FromDTO(item);
+            break;
+        }
+    }
+
+    // Was machen, wenn Element nicht in der Liste ist!
+}

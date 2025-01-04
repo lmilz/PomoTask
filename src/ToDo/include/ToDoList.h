@@ -38,6 +38,8 @@ class ToDoList
     void AddItem(const ToDo& todo);
     // void removeItem(const ToDo& todo);
     std::vector<ToDo> ShowList() const;
+    ToDo FetchToDoByName(const std::string& todo_name);
+    void UpdateToDo(const ToDo& todo);
 
    private:
     Database* todo_list;
