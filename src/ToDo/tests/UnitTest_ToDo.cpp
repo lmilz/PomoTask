@@ -84,7 +84,7 @@ TEST(ToDoListTest, FetchToDoByName)
 {
     // Arrange
     ToDoList* test_obj = new ToDoList();
-    std::string todo_name = "Test Task 1";
+    const std::string todo_name = "Test Task 1";
     const ToDo todo("Test Task 1", "Test Task 1 Description", "Todo", "1.1.2025");
     test_obj->AddItem(todo);
     
@@ -99,6 +99,31 @@ TEST(ToDoListTest, FetchToDoByName)
     EXPECT_EQ(dto.due_date, "1.1.2025");
 
     delete test_obj;    
+}
+
+TEST(ToDoListTest, UpdateToDo)
+{
+    // Arrange
+    ToDoList* test_obj = new ToDoList();
+    const std::string todo_name = "Test Task 1";
+    ToDo todo("Test Task 1", "Test Task 1 Description", "Todo", "1.1.2025");
+    test_obj->AddItem(todo);
+    ToDoDTO dto = todo.ToDTO();
+    dto.due_date = "31.1.2025";
+    todo = ToDo::FromDTO(dto);
+    
+    // Act
+    test_obj->UpdateToDo(todo);
+    
+    // Assert
+    const ToDo fetch = test_obj->FetchToDoByName(todo_name);
+    const ToDoDTO dto_result = fetch.ToDTO();
+    EXPECT_EQ(dto_result.name, "Test Task 1");
+    EXPECT_EQ(dto_result.description, "Test Task 1 Description");
+    EXPECT_EQ(dto_result.status, "Todo");
+    EXPECT_EQ(dto_result.due_date, "31.1.2025");
+
+    delete test_obj;      
 }
 
 /*TEST(ToDoListTest, RemoveToDo)

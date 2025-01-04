@@ -83,3 +83,8 @@ ToDo ToDoList::FetchToDoByName(const std::string& todo_name)
 
     // Was machen, wenn Element nicht in der Liste ist!
 }
+
+void ToDoList::UpdateToDo(const ToDo& todo)
+{
+    todo_list->Update(todo.ToDTO());
+}
