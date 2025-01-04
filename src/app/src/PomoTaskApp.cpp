@@ -92,7 +92,27 @@ void PomoTaskApp::Execute()
             }
             break;
         }
-        case CommandType::POMOTASK_APP_UPDATE_TODO: {
+        case CommandType::POMOTASK_APP_UPDATE_TODO: 
+        {
+            // cli ./PomoTask -u name element new_value
+            auto item = todo_list->FetchToDoByName(cli->GetArgumentList()[0]);
+            auto dto = item.ToDTO();
+            
+            if (cli->GetArgumentList()[1] == "Description")
+            {
+                dto.description = cli->GetArgumentList()[2];
+            }
+            else if (cli->GetArgumentList()[1] == "Status")
+            {
+                dto.status = cli->GetArgumentList()[2];
+            }
+            else if (cli->GetArgumentList()[1] == "Due Date")
+            {
+                dto.due_date = cli->GetArgumentList()[2];
+            }
+
+            todo_list->UpdateToDo(ToDo::FromDTO(dto));
+
             break;
         }
         default: {
