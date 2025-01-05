@@ -15,15 +15,10 @@ A lightweight and efficient command-line application that combines the Pomodoro 
 ## Features
 
 - **Pomodoro Timer**: Focus on tasks using the proven Pomodoro technique.
-- **Customizable Durations**: Adjust work and break durations to fit your needs.
+- **Customizable Durations**: Adjust work durations to fit your needs.
+- **To-Do Manager**: Create, update, and delete tasks easily.
+- **Database connection**: Save and fetch all data within a database.
 - **User-Friendly Interface**: Clean and simple CLI design.
-
-## Work in Progress
-
-- [ ] **To-Do Manager**: Create, update, and delete tasks easily.
-- [ ] **Database connection**: Save and fetch all data within a database.
-- [ ] **Progress Tracking**: Monitor completed Pomodoros for each task.
-- [ ] **Markdown export**: Export Pomodoros into markdown notes.
 
 ## Getting Started
 
