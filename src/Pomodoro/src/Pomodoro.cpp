@@ -32,13 +32,13 @@ Pomodoro::Pomodoro(int focus) : focustime(focus * 60)
 bool Pomodoro::Start()
 {
     std::cout << "\033[1;1H";
-    std::cout << "\rVerbleibende Zeit: " << focustime / 60 << " Minuten " << focustime % 60
-              << " Sekunden" << std::flush;
+    std::cout << "\rRemaining time: " << focustime / 60 << " min " << focustime % 60 << " sec"
+              << std::flush;
     --focustime;
 
     if (focustime == 0) {
         std::cout << "\n"
-                  << "Pomodoro beendet! Zeit für eine Pause!" << "\n";
+                  << "Pomodoro finished! Time for a break!" << "\n";
         return false;
     }
 

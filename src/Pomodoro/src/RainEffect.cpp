@@ -42,36 +42,31 @@ void RainEffect::Run()
 {
     SetTextColor();
 
-    // 30% Wahrscheinlichkeit, einen neuen Regentropfen hinzuzufügen
     if (dist_chance(gen) < 3) {
-        raindrops.push_back({dist_cols(gen), 0});  // Neuer Tropfen in zufälliger Spalte
+        raindrops.push_back({dist_cols(gen), 0});
     }
 
-    // Verschiebe bestehende Regentropfen nach unten und lösche ihre alten Positionen
     for (auto& drop : raindrops) {
         SetCursorPosition(drop.y, drop.x + 1);
-        std::cout << " ";  // Löschen der alten Position
+        std::cout << " ";
         drop.y++;
     }
 
-    // Zeichne die Regentropfen an ihren neuen Positionen
     for (const auto& drop : raindrops) {
         if (drop.y < GetRows()) {
             SetCursorPosition(drop.y, drop.x + 1);
-            std::cout << "|";  // Neuer Regentropfen
+            std::cout << "|";
         }
         else {
-            waterfilm[drop.x] = '.';  // Tropfen erreicht den Boden
+            waterfilm[drop.x] = '.';
         }
     }
 
-    // Entferne Regentropfen, die den Boden erreicht haben
     raindrops.erase(std::remove_if(raindrops.begin(),
                                    raindrops.end(),
                                    [this](const Raindrop& drop) { return drop.y >= GetRows(); }),
                     raindrops.end());
 
-    // Zeichne den Wasserfilm
     for (int i = 0; i < GetCols(); ++i) {
         if (waterfilm[i] != ' ') {
             SetCursorPosition(GetRows(), i + 1);

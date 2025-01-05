@@ -92,22 +92,17 @@ void PomoTaskApp::Execute()
             }
             break;
         }
-        case CommandType::POMOTASK_APP_UPDATE_TODO: 
-        {
-            // cli ./PomoTask -u name element new_value
+        case CommandType::POMOTASK_APP_UPDATE_TODO: {
             auto item = todo_list->FetchToDoByName(cli->GetArgumentList()[0]);
             auto dto = item.ToDTO();
-            
-            if (cli->GetArgumentList()[1] == "Description")
-            {
+
+            if (cli->GetArgumentList()[1] == "Description") {
                 dto.description = cli->GetArgumentList()[2];
             }
-            else if (cli->GetArgumentList()[1] == "Status")
-            {
+            else if (cli->GetArgumentList()[1] == "Status") {
                 dto.status = cli->GetArgumentList()[2];
             }
-            else if (cli->GetArgumentList()[1] == "Due Date")
-            {
+            else if (cli->GetArgumentList()[1] == "Due Date") {
                 dto.due_date = cli->GetArgumentList()[2];
             }
 
@@ -134,12 +129,11 @@ void PomoTaskApp::PrintHelp()
 {
     // Liste der Befehle und Beschreibungen
     const std::map<std::string, std::string> commands
-        = {{"--help                          ", "Zeigt diese Hilfeseite an."},
-           {"--pomodoro <focus time> <effect>",
-            "Pomodoro Timer mit der Fokuszeit und den CLI Effekt."},
-           {"--add <Name> <Description> <Due Date>",
-            "Neuer ToDo mit Namen, Beschreibung und Fertigungsdatum."},
-           {"--show", "Alle ToDos anzeigen."}};
+        = {{"--help, -h                          ", "Show help."},
+           {"--pomodoro, -p <focus time> <effect>", "Pomodoro timer with focus time."},
+           {"--add, -a <name> <description> <due date>", "Add a new todo."},
+           {"--show, -s", "Show all todos."},
+           {"--update, -u <name> <element> <new_value>", "update a todo."}};
 
     std::cout << "Verfügbare Befehle:\n";
     for (const auto& [command, description] : commands) {
