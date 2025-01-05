@@ -111,8 +111,8 @@ void PomoTaskApp::Execute()
             break;
         }
         default: {
-            std::cout << "Unbekannter Befehl: " << command << "\n";
-            std::cout << "Verwenden Sie --help für eine Liste der Befehle.\n";
+            std::cout << "Invalid command: " << command << "\n";
+            std::cout << "Use --help for a list of commands.\n";
             break;
         }
     }
@@ -135,7 +135,7 @@ void PomoTaskApp::PrintHelp()
            {"--show, -s", "Show all todos."},
            {"--update, -u <name> <element> <new_value>", "update a todo."}};
 
-    std::cout << "Verfügbare Befehle:\n";
+    std::cout << "Commands:\n";
     for (const auto& [command, description] : commands) {
         std::cout << "  " << command << "\t" << description << "\n";
     }
@@ -148,14 +148,14 @@ void PomoTaskApp::InitEffect()
         effect = std::make_unique<RainEffect>(rows + 2, cols);
     }
     else {
-        std::cout << "Ungültige Auswahl!\n";
+        std::cout << "Invalid selection!\n";
     }
 }
 
 void PomoTaskApp::InitPomodoroTimer()
 {
     if (std::stoi(cli->GetArgumentList()[0]) <= 0) {
-        std::cerr << "Bitte eine gültige Fokuszeit eingeben." << "\n";
+        std::cerr << "Set valid focus time." << "\n";
         return;
     }
 
