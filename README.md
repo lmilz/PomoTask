@@ -1,66 +1,13 @@
-```
-  _____                   _______        _    
- |  __ \                 |__   __|      | |   
- | |__) |__  _ __ ___   ___ | | __ _ ___| | __
- |  ___/ _ \| '_ ` _ \ / _ \| |/ _` / __| |/ /
- | |  | (_) | | | | | | (_) | | (_| \__ \   < 
- |_|   \___/|_| |_| |_|\___/|_|\__,_|___/_|\_\
-                                              
-```
-
 # PomoTask
 
-A lightweight and efficient command-line application that combines the Pomodoro technique with a built-in to-do list manager. Stay productive and organized directly from your terminal!
+A command-line application that combines the Pomodoro technique with a built-in to-do list manager. Stay productive and organized directly from your terminal!
 
 ## Features
 
-- **Pomodoro Timer**: Focus on tasks using the proven Pomodoro technique.
-- **Customizable Durations**: Adjust work durations to fit your needs.
-- **To-Do Manager**: Create, update, and delete tasks easily.
-- **Database connection**: Save and fetch all data within a database.
-- **User-Friendly Interface**: Clean and simple CLI design.
-
-## Getting Started
-
-### Prerequisites
-
-- A C++ compiler supporting C++20 or higher.
-- cmake.
-- Make.
-- Test Framework google test
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/lmilz/PomoTask.git
-   cd PomoTask
-   ```
-
-2. Build the project:
-   ```bash
-   mkdir build
-   cd build
-   cmake ..
-   cmake --build .
-   ```
-
-3. Test the project:
-   ```bash
-   ctest
-   ```
-
-34 Run the application:
-   ```bash
-   ./PomoTask
-   ```
-
-### Usage
-
-#### Start a Pomodoro Session
-```bash
-./PomoTask --pomodoro <focustime> <effect>
-```
+- **Pomodoro Timer**: Focus on tasks using the proven Pomodoro technique.  
+- **Customizable Durations**: Adjust work durations to fit your needs.  
+- **To-Do Manager**: Create, update, and delete tasks easily.  
+- **Database Connection**: Save and fetch all data within a database.  
 
 ## License
 
