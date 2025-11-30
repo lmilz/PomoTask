@@ -9,10 +9,6 @@ A command-line application that combines the Pomodoro technique with a built-in 
 - **To-Do Manager**: Create, update, and delete tasks easily.  
 - **Database Connection**: Save and fetch all data within a database.  
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Third-Party Libraries
 
 This software uses the following third-party libraries:
